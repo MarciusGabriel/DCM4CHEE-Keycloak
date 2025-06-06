@@ -1,0 +1,33 @@
+{
+  "title": "Descriptor de métricas",
+  "description": "Descriptor de métricas.",
+  "type": "object",
+  "required": [
+    "dcmMetricsName",
+    "dcmMetricsRetentionPeriod"
+  ],
+  "properties": {
+    "dcmMetricsName": {
+      "title": "Nombre de la métrica",
+      "description": "Nombre de la métrica.",
+      "type": "string"
+    },
+    "dicomDescription": {
+      "title": "Descripción de las métricas",
+      "description": "Descripción en texto sin restricciones de las métricas.",
+      "type": "string"
+    },
+    "dcmMetricsRetentionPeriod": {
+      "title": "Periodo de retención de métricas",
+      "description": "Periodo de retención de métricas en minutos.",
+      "type": "integer",
+      "default" : 60,
+      "minimum": 1
+    },
+    "dcmUnit": {
+      "title": "Unidad de métricas",
+      "description": "Unidad de datos de métricas.",
+      "type": "string"
+    }
+  }
+}

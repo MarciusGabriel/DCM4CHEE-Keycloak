@@ -1,0 +1,57 @@
+{
+  "title": "Listado desplegable de la aplicación web",
+  "description": "Lista desplegable de la aplicación web.",
+  "type": "object",
+  "required": [
+    "dcmuiWebAppListName",
+    "dcmuiWebApps",
+    "dcmuiMode"
+  ],
+  "properties": {
+    "dcmuiWebAppListName": {
+      "title": "Nombre de la lista",
+      "description": "Defina un nombre para esta configuración.",
+      "type": "string"
+    },
+    "dcmuiWebAppListDescription": {
+      "title": "Descripción",
+      "description": "Descripción de la lista de la aplicación web.",
+      "type": "string"
+    },
+    "dcmuiMode": {
+      "title": "Modo de lista",
+      "description": "Tiene dos posibilidades para mostrar la lista definida: 1.) En la parte superior en el resto de la lista 'separados' con una línea, 2.) Mostrar sólo los que hir definido ('exclusivo').",
+      "type": "string",
+      "default":"separated",
+      "enum": [
+        "separated",
+        "exclusive"
+      ]
+    },
+    "dcmuiWebApps": {
+      "title": "Aplicaciones Web",
+      "description": "Aplicación Web",
+      "format": "webApp",
+      "type": "array",
+      "items" : {
+        "type": "string"
+      }
+    },
+    "dcmAcceptedUserRole": {
+      "title": "Rol de Usuario Aceptado",
+      "description": "Defina los roles para los cuales esta configuración debe estar disponible, use 'user' para estar disponible para todos los roles (Debe definir un nombre de usuario (siguiente atributo) o rol de usuario (este atributo ))",
+      "type": "array",
+      "items" : {
+        "type": "string"
+      }
+    },
+    "dcmAcceptedUserName": {
+      "title": "Nombre de Usuario Aceptado",
+      "description": "Defina el nombre de usuario para el que esta configuración debe estar disponible (Debe definir un nombre de usuario (este atributo) o un rol de usuario (atributo anterior))",
+      "type": "array",
+      "items" : {
+        "type": "string"
+      }
+    }
+  }
+}

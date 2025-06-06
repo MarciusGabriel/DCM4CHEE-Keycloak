@@ -1,0 +1,130 @@
+{
+  "title": "Coerción de atributos de archivo - Nuevo",
+  "description": "Coerción de atributos de archivo de DIMSE recibidos/enviados",
+  "type": "object",
+  "required": [
+    "cn",
+    "dcmDIMSE",
+    "dicomTransferRole",
+    "dcmURI",
+    "dcmCoercionSufficient",
+    "dcmCoercionOnFailure",
+    "dcmRulePriority",
+    "dcmAttributeUpdatePolicy"
+  ],
+  "properties": {
+    "cn": {
+      "title": "Nombre",
+      "description": "Nombre arbitrario/significativo del atributo de archivo Coerción",
+      "type": "string"
+    },
+    "dicomDescription": {
+      "title": "Descripción de la coerción de atributos",
+      "description": "Descripción de texto sin restricciones de la coacción de atributos",
+      "type": "string"
+    },
+    "dcmURI": {
+      "title": "URI de coerción de atributos",
+      "description": "Identifica la coerción de atributos mediante un identificador uniforme de recursos. Valores de referencia que puede establecer para <a href=\"https://github.com/dcm4che/dcm4chee-arc-light/wiki/New-Archive-Attribute-Coercion---Application-of-multiple-coercions-for-one-use-case-using-multiple-rules#attribute-coercion-uri\" target=\"_blank\"> URI de coerción de atributos </a> en función del tipo de coerción.",
+      "type": "string"
+    },
+    "dcmCoercionSufficient": {
+      "title": "Atributo Coerción Suficiente",
+      "description": "No aplicar otras Coerciones de Atributo coincidentes de menor prioridad, si esta Coerción de Atributo fue aplicada efectivamente.",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmCoercionOnFailure": {
+      "title": ": Coerción de atributos en caso de fallo",
+      "description": "Comportamiento en caso de fallo al aplicar esta coacción de atributo. Consulte <a href=\"https://github.com/dcm4che/dcm4chee-arc-light/wiki/New-Archive-Attribute-Coercion---Application-of-multiple-coercions-for-one-use-case-using-multiple-rules#attribute-coercion-on-failure\" target=\"_blank\"> Atributo Coacción sobre significados de fallo.</a>",
+      "type": "string",
+      "default": "RETHROW",
+      "enum": [
+        "RETHROW",
+        "CONTINUE",
+        "SUFFICIENT"
+      ]
+    },
+    "dcmRulePriority": {
+      "title": "Atributo Prioridad de Coerción",
+      "description": "Si la condición de varias coerciones de atributos de archivo (nuevo) coincide para una imagen recibida, tiene prioridad la coerción de mayor prioridad. Si hay varias coerciones coincidentes con la misma prioridad, no se define qué coerción tiene prioridad",
+      "type": "integer",
+      "default" : 0,
+      "minimum": 0
+    },
+    "dcmDIMSE": {
+      "title": "DIMSE",
+      "description": "Elemento de mensaje DICOM al que se aplicará esta coerción de atributo. También <a href=\"https://github.com/dcm4che/dcm4chee-arc-light/wiki/New-Archive-Attribute-Coercion---Application-of-multiple-coercions-for-one-use-case-using-multiple-rules#dimse\" target=\"_blank\">aplicable si las solicitudes se reciben a través de la web.</a>",
+      "type": "string",
+      "enum": [
+        "N_CREATE_RQ",
+        "C_STORE_RQ",
+        "C_FIND_RQ",
+        "C_FIND_RSP"
+      ]
+    },
+    "dicomTransferRole": {
+      "title": "Función de transferencia DICOM",
+      "description": "Función de transferencia DICOM del par DICOM AE.",
+      "type": "string",
+      "enum": [
+        "SCU",
+        "SCP"
+      ]
+    },
+    "dcmSOPClass": {
+      "title": "SOP Class UID",
+      "description": "UID de la clase SOP a la que se aplicará esta coerción de atributos. Aplicar sobre cualquiera si está ausente.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "format": "dcmSOPClass"
+    },
+    "dcmProperty": {
+      "title": "Condición",
+      "description": "Condiciones en formato {key}[!]={value}.  <a href=\"https://github.com/dcm4che/dcm4chee-arc-light/wiki/Conditions\" target=\"_blank\"> aplicabilidad, formato y algunos ejemplos.</a>",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "format": "dcmProperty"
+    },
+    "dcmAttributeUpdatePolicy": {
+      "title": "Política de actualización de atributos",
+      "description": "Política de actualización de atributos aplicada. Sólo efectivo para coerce desde Leading C-FIND SCP tipo de coerción. Consulte <a href=\"https://github.com/dcm4che/dcm4chee-arc-light/wiki/Attribute-Update-Policy\" target=\"_blank\"> Significado de las políticas de actualización de atributos.</a>",
+      "type": "string",
+      "default": "MERGE",
+      "enum": [
+        "PRESERVE",
+        "SUPPLEMENT",
+        "MERGE",
+        "OVERWRITE"
+      ]
+    },
+    "dcmSupplementFromDeviceReference": {
+      "title": "Parámetro de coerción del nombre del dispositivo",
+      "description": "Parámetro de coerción de nombre de dispositivo. Sólo es efectivo para complementar desde el tipo de coerción de dispositivo.",
+      "type": "string",
+      "format": "dicomDeviceName"
+    },
+    "dcmMergeAttribute": {
+      "title": "Parámetros de coerción de atributos DICOM",
+      "description": "Parámetros de coerción de atributos DICOM en formato {attributeID}={value}. {attributeID} dentro de {value} puede sustituirse por el valor de ese atributo en el conjunto de datos original. Sólo es efectivo para fusionar atributos de tipo coerción. Consulte <a href=\"https://github.com/dcm4che/dcm4chee-arc-light/wiki/New-Archive-Attribute-Coercion---Application-of-multiple-coercions-for-one-use-case-using-multiple-rules#dicom-attribute-coercion-parameters\" target=\"_blank\"> opciones de formato y ejemplos.</a>",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "format": "dcmProperty"
+    },
+    "dcmCoercionParam": {
+      "title": "Otros parámetros de coerción",
+      "description": "Consulte la aplicabilidad a los tipos de coerción y los ejemplos en <a href=https://github.com/dcm4che/dcm4chee-arc-light/wiki/New-Archive-Attribute-Coercion---Application-of-multiple-coercions-for-one-use-case-using-multiple-rules#other-coercion-parameters target=\"_blank\"> Otros parámetros específicos de la coerción de atributos</a>",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "format": "dcmProperty"
+    }
+  }
+}

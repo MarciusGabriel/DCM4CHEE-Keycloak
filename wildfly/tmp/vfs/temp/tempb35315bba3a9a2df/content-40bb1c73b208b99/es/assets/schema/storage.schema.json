@@ -1,0 +1,327 @@
+{
+  "title": "Almacenamiento",
+  "description": "Descriptor de almacenamiento",
+  "type": "object",
+  "required": [
+    "dcmStorageID",
+    "dcmURI",
+    "dcmArchiveSeriesAsTAR",
+    "dcmStoragePathFormat",
+    "dcmOnStoragePathAlreadyExists",
+    "dcmRetryCreateDirectories",
+    "dcmAltCreateDirectories",
+    "dcmFileOpenOption",
+    "dcmLocationStatus",
+    "dcmCountLocationsByStatus",
+    "dcmMaxRetries",
+    "dcmInstanceAvailability",
+    "dcmRetrieveCacheMaxParallel",
+    "dcmReadOnly",
+    "dcmStorageThresholdExceedsPermanently",
+    "dcmNoDeletionConstraint",
+    "dcmSingleExportStorageByStudy",
+    "dcmNoRetrieveCacheOnPurgedInstanceRecords",
+    "dcmDeleterThreads",
+    "dcmStorageDuration"
+  ],
+  "properties": {
+    "dcmStorageID": {
+      "title": "Storage ID",
+      "description": "Storage ID",
+      "type": "string",
+      "use": [
+        "$.dcmDevice.dcmArchiveDevice.dcmSeriesMetadataStorageID[*]",
+        "$.dcmDevice.dcmArchiveDevice.dcmStorageVerificationStorageID[*]",
+        "$.dcmDevice.dcmArchiveDevice.dcmStorage[*].dcmExportStorageID[*]",
+        "$.dcmDevice.dcmArchiveDevice.dcmStorage[*].dcmRetrieveCacheStorageID",
+        "$.dicomNetworkAE[*].dcmNetworkAE.dcmArchiveNetworkAE.dcmObjectStorageID[*]",
+        "$.dicomNetworkAE[*].dcmNetworkAE.dcmArchiveNetworkAE.dcmMetadataStorageID[*]",
+        "$.dicomNetworkAE[*].dcmNetworkAE.dcmArchiveNetworkAE.dcmStorageVerificationStorageID[*]"
+      ]
+    },
+    "dcmURI": {
+      "title": "URI de almacenamiento",
+      "description": "RFC2079: Identificador Uniforme de Recursos",
+      "type": "string"
+    },
+    "dcmArchiveSeriesAsTAR": {
+      "title": "Serie de Archivo como TAR",
+      "description": "Indica que los objetos binarios DICOM de una Serie están empaquetados en un archivo TAR en este Sistema de Almacenamiento; falso si no existe.",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmStoragePathFormat": {
+      "title": "Formato de la ruta de almacenamiento",
+      "description": "Formato de la ruta de archivo de los objetos binarios DICOM o metadatos en formato JSON o de los archivos ZIP que contienen metadatos en formato JSON para cada objeto DICOM de una serie, escritos en este sistema de almacenamiento. '{now,date,yyyy/MM/dd}/{0020000D,hash}/{0020000E,hash}/{00080018,hash}', si no existe.",
+      "type": "string",
+      "default": "{now,date,yyyy/MM/dd}/{0020000D,hash}/{0020000E,hash}/{00080018,hash}"
+    },
+    "dcmOnStoragePathAlreadyExists": {
+      "title": "Ya existe en la ruta de almacenamiento",
+      "description": "Especifica el comportamiento si un objeto ya existe en la ruta de almacenamiento en el sistema de almacenamiento, ensamblado según el 'Formato de ruta de almacenamiento' configurado. Comportamiento por defecto 'RUTA_ALEATORIA'. (pase el ratón sobre las opciones para ver sus descripciones)",
+      "type": "string",
+      "enum": [
+        "FAILURE|Signals failure writing the new object",
+        "NOOP|Proceed without writing the new object",
+        "RANDOM_PATH|Replace last path element be random 8 hex digit number and try again"
+      ],
+      "default": "RANDOM_PATH"
+    },
+    "dcmRetryCreateDirectories": {
+      "title": "Reintentar Crear Directorios",
+      "description": "Especifica el número de reintentos para crear directorios padre de la ruta de almacenamiento - puede solucionar problemas relacionados con NFS; 0 si no existe.",
+      "type": "integer",
+      "default": 0
+    },
+    "dcmAltCreateDirectories": {
+      "title": "Crear directorios Alt",
+      "description": "Indicar que no se confíe en la función 'createDirectories' de la clase Java 'java.nio.file.Files', para crear primero todos los directorios padre inexistentes, sino que se creen explícitamente los directorios padre si se lanza NoSuchFileException. Puede solucionar problemas relacionados con NFS.",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmCheckMountFilePath": {
+      "title": "Verificar ruta de archivo de montaje",
+      "description": "Indica que se verifique si un sistema de archivos montado no se separó de su punto de montaje, especificando la ruta de un archivo sombra en el directorio utilizado como punto de montaje. Si el archivo sombra se vuelve inaccesible, falla la operación de escritura en el almacenamiento. Se comprueba para cada almacenamiento de objetos DICOM (operación de escritura). Normalmente aplicable a NFS / sistemas de archivos externos.",
+      "type": "string"
+    },
+    "dcmCheckExistFilePath": {
+      "title": "Check Exist File Path",
+      "description": "Indicates to check if the specified file on the storage file system exists. If the file becomes inaccessible, the write operation to the storage fails, preventing to store objects on the file system.",
+      "type": "string"
+    },
+    "dcmFileOpenOption": {
+      "title": "Opción(es) de apertura del archivo",
+      "description": "Opciones que especifican cómo se abre el archivo para la escritura. Comportamiento por defecto 'CREAR_NUEVO'. (pase el ratón sobre las opciones para ver sus descripciones)",
+      "type": "array",
+      "items" : {
+        "type": "string",
+        "enum": [
+          "CREATE_NEW|Create a new file, failing if the file already exists",
+          "DSYNC|Requires that every update to the file's content be written synchronously to the underlying storage device",
+          "SYNC|Requires that every update to the file's content or metadata be written synchronously to the underlying storage device"
+        ]
+      },
+      "default": "CREATE_NEW"
+    },
+    "dcmLocationStatus": {
+      "title": "Estado de Ubicación",
+      "description": "Estado de Ubicación Inicial de los archivos DICOM escritos en este Sistema de Almacenamiento. Comportamiento por defecto 'OK' (pase el ratón sobre las opciones para ver sus descripciones)",
+      "type": "string",
+      "enum": [
+        "OK|Indicates access state of stored objects is stable",
+        "VERIFY_QSTAR_ACCESS_STATE|Indicates to verify access state of stored objects from QStar Tape File System"
+      ],
+      "default": "OK"
+    },
+    "dcmCountLocationsByStatus": {
+      "title": "Contar Ubicaciones por Estado",
+      "description": "Indicar si se desea incluir el recuento de ubicaciones con estado != 0 (=OK) para este Sistema de Almacenamiento mediante el servicio RESTful para listar Sistemas de Almacenamiento; falso si no existe.",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmDigestAlgorithm": {
+      "title": "Digerir Algoritmo",
+      "description": "Algoritmo para la generación de sumas de comprobación.",
+      "type": "string",
+      "enum" : [
+        "MD5|Message-digest algorithm",
+        "SHA-1|Secure Hash Algorithm 1"
+      ]
+    },
+    "dcmMaxRetries": {
+      "title": "Número máximo de reintentos",
+      "description": "Número máximo de reintentos para almacenar un objeto en el sistema de almacenamiento.",
+      "type": "integer",
+      "minimum": 0,
+      "default": 0
+    },
+    "dcmRetryDelay": {
+      "title": "Retraso de reintento",
+      "description": "Retraso de reintento para almacenar un objeto en el sistema de almacenamiento en formato de duración ISO-8601 PnDTnHnMn.nS. Reintentar inmediatamente si no existe.",
+      "type": "string",
+      "format": "dcmDuration"
+    },
+    "dcmInstanceAvailability": {
+      "title": "Disponibilidad de instancia",
+      "description": "Disponibilidad de instancia.",
+      "type": "string",
+      "default": "ONLINE",
+      "enum": [
+        "ONLINE",
+        "NEARLINE",
+        "OFFLINE"
+      ]
+    },
+    "dcmStorageDuration": {
+      "title": "Duración del almacenamiento",
+      "description": "Indica el tipo de duración del almacenamiento. Los objetos se eliminan de la caché y del almacenamiento temporal de acuerdo con los umbrales de eliminación configurados o, si no se especifica ningún umbral de eliminación ni se configuran periodos de retención, se eliminarán todos los objetos del almacenamiento. En el caso del almacenamiento temporal, los estudios cuyos objetos se hayan purgado también se eliminarán de la base de datos.",
+      "type": "string",
+      "default": "PERMANENT",
+      "enum": [
+        "PERMANENT|Permanent storage",
+        "CACHE|Cache storage",
+        "TEMPORARY|Temporary storage"
+      ]
+    },
+    "dcmReadOnly": {
+      "title": "Sólo lectura",
+      "description": "Indica si un Sistema de Almacenamiento es de sólo lectura.",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmStorageClusterID": {
+      "title": "ID de grupo de almacenamiento",
+      "description": "Identifica un almacenamiento CACHE perteneciente a un grupo de almacenamiento. Los objetos de un estudio pueden distribuirse entre los sistemas de almacenamiento de un grupo de almacenamiento. Se utiliza para la eliminación activada por umbral.",
+      "type": "string"
+    },
+    "dcmStorageThreshold": {
+      "title": "Umbral de Almacenamiento",
+      "description": "Espacio Mínimo Utilizable en el Sistema de Almacenamiento. Si el espacio utilizable cae por debajo de ese valor, el Sistema de Almacenamiento se marcará como lleno estableciendo que el Umbral de Almacenamiento Excede a la hora actual y - si el Umbral de Almacenamiento Excede Permanentemente es verdadero - el Sistema de Almacenamiento se eliminará de la lista de Sistemas de Almacenamiento configurados del AE de Red que solicita ese Sistema de Almacenamiento. Formato nnn(MB|GB|MiB|GiB)",
+      "type": "string"
+    },
+    "dcmStorageThresholdExceeded": {
+      "title": "Umbral de Almacenamiento Excedido",
+      "description": "Fecha y hora en formato AAAAMMDDHHMMSS.FFFFFF en que se excedió el Umbral de Almacenamiento.",
+      "type": "string"
+    },
+    "dcmStorageThresholdExceedsPermanently": {
+      "title": "Umbral de Almacenamiento Excedido Permanentemente",
+      "description": "Indica que se elimine el Sistema de Almacenamiento de la lista de Sistemas de Almacenamiento configurados del AE de Red que solicita dicho Sistema de Almacenamiento cuando se excede el Umbral de Almacenamiento.",
+      "type": "boolean",
+      "default": true
+    },
+    "dcmNoDeletionConstraint": {
+      "title": "Sin restricción de borrado",
+      "description": "Borrar estudios de la caché/sistema de almacenamiento temporal, si no se ha configurado ningún umbral de borrado ni ninguna otra restricción de borrado.",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmDeleterThreshold": {
+      "title": "Umbral de eliminación",
+      "description": "Espacio mínimo utilizable en el sistema de almacenamiento para activar la eliminación. Si está presente, los estudios se borran del Sistema de Almacenamiento configurado para almacenamiento en caché (Duración del Almacenamiento = CACHE) o temporal (Duración del Almacenamiento = TEMPORAL), si el espacio utilizable cae por debajo de ese valor. Formato [nn'['<schedule>']']nnn(MB|GB|MiB|GiB).",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dcmDeleterThresholdMaxUseableSpace": {
+      "title": "Deleter Threshold Max Usable Space",
+      "description": "Maximal Usable Space on Storage System to trigger deletion. If present, studies are deleted from the Storage System configured for cache (Storage Duration = CACHE) or temporary (Storage Duration = TEMPORARY) storage, if the used disk space exceeds that value. Format [nn'['<schedule>']']nnn(MB|GB|MiB|GiB).",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dcmDeleterThresholdBlocksFilePath": {
+      "title": "Deleter Threshold Blocks File Path",
+      "description": "Path of file containing the current used disk space in blocks (1024 bytes), periodically updated by an external application.",
+      "type": "string"
+    },
+    "dcmDeleteStudiesOlderThan": {
+      "title": "Borrar estudios más antiguos que",
+      "description": "Borrar estudios del sistema de almacenamiento configurado para almacenamiento en caché (dcmStorageDuration=CACHE) o temporal (dcmStorageDuration=TEMPORARY), si su fecha de estudio es más antigua que el valor especificado en formato de periodo ISO-8601. Formato [nn\"[\"\"<schedule>\"]\"](PnYnMnD|PnW).",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "format": "dcmPeriod"
+    },
+    "dcmDeleteStudiesReceivedBefore": {
+      "title": "Borrar estudios recibidos antes",
+      "description": "Borrar estudios del sistema de almacenamiento configurado para almacenamiento en caché (dcmStorageDuration=CACHE) o temporal (dcmStorageDuration=TEMPORARY), si se recibieron hace más tiempo que el valor especificado en formato de periodo ISO-8601. Formato [nn\"[\"\"<schedule>\"]\"](PnYnMnD|PnW).",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "format": "dcmPeriod"
+    },
+    "dcmDeleteStudiesNotUsedSince": {
+      "title": "Borrar estudios no utilizados desde",
+      "description": "Borrar estudios del sistema de almacenamiento configurado para almacenamiento en caché (dcmStorageDuration=CACHE) o temporal (dcmStorageDuration=TEMPORARY), si se accedió a ellos por última vez hace más tiempo que el valor especificado en formato de período ISO-8601. Formato [nn\"[\"\"<schedule>\"]\"](PnYnMnD|PnW).",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "format": "dcmPeriod"
+    },
+    "dcmDeleterThreads": {
+      "title": "Subprocesos de borrado",
+      "description": "Número de subprocesos utilizados para borrar objetos del sistema de almacenamiento.",
+      "type": "integer",
+      "default" : 1,
+      "minimum": 0,
+      "exclusiveMinimum": true
+    },
+    "dcmExternalRetrieveAET": {
+      "title": "AETs de Recuperación Externa",
+      "description": "Restringe el borrado de Estudios, adicionalmente a los umbrales de borrado configurados y/o restricciones de periodo de retención de borrado, desde el Sistema de Almacenamiento a Estudios cuyos objetos son recuperables usando uno de los AEs desde un SCP C-MOVE externo.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "format": "dcmAETitle"
+    },
+    "dcmExternalRetrieveInstanceAvailability": {
+      "title": "Disponibilidad de Instancias de Recuperación Externa",
+      "description": "Actualiza la disponibilidad de instancias en la eliminación de estudios para instancias disponibles en el archivo de recuperación externa.",
+      "type": "string",
+      "enum": [
+        "ONLINE",
+        "NEARLINE",
+        "OFFLINE"
+      ]
+    },
+    "dcmExportStorageID": {
+      "title": "Exportar ID de Almacenamiento",
+      "description": "Restringe la eliminación de Estudios, además de los umbrales de eliminación configurados y/o las restricciones del periodo de retención de eliminación, desde el Sistema de Almacenamiento a Estudios cuyos objetos también son accesibles desde los otros almacenamientos especificados.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "format": "dcmStorageID"
+    },
+    "dcmSingleExportStorageByStudy": {
+      "title": "Single Export Storage by Study",
+      "description": "Indicates that objects of one Study are NOT distributed over several Export Storages.",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmRetrieveCacheStorageID": {
+      "title": "Recuperar ID de almacenamiento en caché",
+      "description": "Especifica otro almacenamiento en el que los objetos se copian en paralelo al recuperarlos para aumentar el rendimiento en el acceso a los sistemas de almacenamiento que proporciona más ancho de banda utilizando varias conexiones en paralelo.",
+      "type": "string",
+      "format": "dcmStorageID"
+    },
+    "dcmNoRetrieveCacheOnDestinationAETitle": {
+      "title": "No Recuperar caché en el título AE de destino",
+      "description": "Especifica los títulos AE de los SCP de C-STORE en los que se recuperan los objetos sin copiarlos en un almacenamiento de caché de recuperación configurado.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "format": "dcmAETitle"
+    },
+    "dcmNoRetrieveCacheOnPurgedInstanceRecords": {
+      "title": "No Recuperar Caché en Registros de Instancia Purgados",
+      "description": "Indica que NO se copien los objetos recuperados a un Almacenamiento de Caché de Recuperación configurado, en el que los Registros de Instancia correspondientes ya se purgaron de la BD.",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmRetrieveCacheMaxParallel": {
+      "title": "Recuperar Caché Máximo Paralelo",
+      "description": "Número máximo de copias paralelas al almacenamiento en caché al recuperar. Sólo efectivo si está configurado un ID de almacenamiento en caché de recuperación.",
+      "type": "integer",
+      "default" : 10,
+      "minimum": 0,
+      "exclusiveMinimum": true
+    },
+    "dcmProperty": {
+      "title": "Propiedad de almacenamiento",
+      "description": "Especifica las propiedades de almacenamiento en formato {name}={value}. Consulte varias <a href=\"https://github.com/dcm4che/dcm4chee-arc-light/wiki/Storage-Properties\" target=\"_blank\">Propiedades de almacenamiento</a> que pueden configurarse en función del tipo de almacenamiento.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

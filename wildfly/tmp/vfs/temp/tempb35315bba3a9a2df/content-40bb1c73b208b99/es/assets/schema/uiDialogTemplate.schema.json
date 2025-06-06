@@ -1,0 +1,38 @@
+{
+  "title": "UI Plantilla de Diálogo",
+  "description": "Definir Crear Plantilla de Diálogo.",
+  "type": "object",
+  "required": [
+    "dcmuiTemplateName",
+    "dcmTag"
+  ],
+  "properties": {
+    "dcmuiTemplateName": {
+      "title": "Nombre",
+      "description": "Nombre de la plantilla de diálogo.",
+      "type": "string"
+    },
+    "dcmTag": {
+      "title": "Atributo Etiqueta",
+      "description": "Etiqueta IDCOM como cadena hexadecimal que se incluirá en esta plantilla de diálogo.",
+      "type": "array",
+      "items" : { "type": "string" },
+      "format": "dcmTag"
+    },
+    "dicomDescription": {
+      "title": "Descripción",
+      "description": "Descripción de la plantilla de diálogo.",
+      "type": "string"
+    },
+    "dcmuiDialog": {
+      "title": "Función de diálogo",
+      "description": "Especifica la función en la que se aplicará esta plantilla de diálogo.",
+      "type": "string",
+      "enum": [
+        "mwl",
+        "patient"
+      ],
+      "default": "mwl"
+    }
+  }
+}

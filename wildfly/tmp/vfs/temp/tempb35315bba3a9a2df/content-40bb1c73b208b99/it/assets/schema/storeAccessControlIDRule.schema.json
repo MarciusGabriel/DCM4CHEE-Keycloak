@@ -1,0 +1,44 @@
+{
+  "title": "Regola ID controllo accesso all'archivio",
+  "description": "Regola ID controllo accesso all'archivio",
+  "type": "object",
+  "required": [
+    "cn",
+    "dcmStoreAccessControlID",
+    "dcmAccessControlSeriesIndividually",
+    "dcmRulePriority"
+  ],
+  "properties": {
+    "cn": {
+      "title": "Nome",
+      "description": "Nome arbitrario/significativo della regola dell'ID di controllo dell'accesso allo storage",
+      "type": "string"
+    },
+    "dcmStoreAccessControlID": {
+      "title": "ID controllo accesso all'archivio",
+      "description": "ID controllo accesso assegnato agli studi i cui attributi soddisfano tutte le condizioni",
+      "type": "string"
+    },
+    "dcmAccessControlSeriesIndividually": {
+      "title": "Access Control Series Individually",
+      "description": "Indicates if access of series should be controlled individually or not.",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmRulePriority": {
+      "title": "Priorità delle regole",
+      "description": "Se la condizione di più regole Store Access Control ID corrisponde per un'immagine ricevuta, viene applicata la regola con priorità più alta. Se ci sono più regole corrispondenti con la stessa priorità, non è definito quale regola venga applicata.",
+      "type": "integer",
+      "minimum": 0,
+      "default": 0
+    },
+    "dcmProperty": {
+      "title": "Condizioni",
+      "description": "Condizioni nel formato (SendingHostname|SendingApplicationEntityTitle|ReceivingHostname|ReceivingApplicationEntityTitle|{AttributeTagOrKeyword[number]}|{SequenceTagOrKeyword.AttributeTagOrKeyword})[!]={regEx}. More than one value can be specified for a given attribute by separating them with a | symbol. Esempio: SendingApplicationEntityTitle=FORWARD o Modality=MR|CT o ProcedureCodeSequence.CodeValue=MRProcedure o 00180015=KNEE o 00321034.00080100=RequestingServiceCode o ImageType[3]=LOCALIZER",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

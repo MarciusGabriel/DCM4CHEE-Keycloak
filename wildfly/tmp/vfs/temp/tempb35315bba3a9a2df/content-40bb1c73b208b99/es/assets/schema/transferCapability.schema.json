@@ -1,0 +1,46 @@
+{
+  "title": "Capacidad de transferencia",
+  "description": "Cada capacidad de transferencia especifica la clase SOP que puede soportar el AE de red, el modo que puede utilizar (SCP o SCU) y la(s) sintaxis(s) de transferencia que puede utilizar.",
+  "type": "object",
+  "required": [
+    "dicomSOPClass",
+    "dicomTransferRole",
+    "dicomTransferSyntax"
+  ],
+  "properties": {
+    "cn": {
+      "title": "Nombre",
+      "description": "Nombre arbitrario/significativo para el objeto de capacidad de transferencia.",
+      "type": "string"
+    },
+    "dicomSOPClass": {
+      "title": "Clase SOP",
+      "description": "UID de clase SOP.",
+      "type": "string",
+      "format": "dcmSOPClass"
+    },
+    "dicomTransferRole": {
+      "title": "Función de transferencia DICOM",
+      "description": "Función de transferencia DICOM.",
+      "type": "string",
+      "enum": [
+        "SCP",
+        "SCU"
+      ]
+    },
+    "dicomTransferSyntax": {
+      "title": "Sintaxis de transferencia",
+      "description": "Sintaxis de transferencia que puede solicitarse como SCU o que se ofrece como SCP.",
+      "type": "array",
+      "format": "dcmTransferSyntax",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dcmTransferCapability": {
+      "title": "Extensión de la capacidad de transferencia",
+      "description": "Atributos de la capacidad de transferencia propietarios de dcm4che.",
+      "$ref": "dcmTransferCapability.schema.json"
+    }
+  }
+}

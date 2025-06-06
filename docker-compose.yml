@@ -1,0 +1,84 @@
+version: "3"
+services:
+  ldap:
+    image: dcm4che/slapd-dcm4chee:2.6.7-33.1
+    ports:
+      - "389:389"
+      - "636:636"
+    volumes:
+      - ./ldap:/var/lib/openldap/openldap-data
+      - ./slapd.d:/etc/openldap/slapd.d
+
+  mariadb:
+    image: mariadb:10.11.4
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: keycloak
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: keycloak
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+  keycloak:
+    image: dcm4che/keycloak:26.0.6
+    ports:
+      - "8843:8843"
+    environment:
+      KC_HTTPS_PORT: 8843
+      KC_HOSTNAME: https://localhost:8843
+      KC_HOSTNAME_STRICT: 'false'
+      KC_HOSTNAME_STRICT_HTTPS: 'false'
+      KC_DB: mariadb
+      KC_DB_URL_DATABASE: keycloak
+      KC_DB_URL_HOST: mariadb
+      KC_DB_USERNAME: keycloak
+      KC_DB_PASSWORD: keycloak
+      KC_METRICS_ENABLED: 'true'
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: changeit
+    depends_on:
+      - ldap
+      - mariadb
+    volumes:
+      - ./keycloak:/opt/keycloak/data
+
+  db:
+    image: dcm4che/postgres-dcm4chee:17.1-33
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: pacsdb
+      POSTGRES_USER: pacs
+      POSTGRES_PASSWORD: pacs
+    volumes:
+      - ./db:/var/lib/postgresql/data
+
+  arc:
+    image: dcm4che/dcm4chee-arc-psql:5.33.1-secure
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "9990:9990"
+      - "9993:9993"
+      - "11112:11112"
+      - "2762:2762"
+      - "2575:2575"
+      - "12575:12575"
+    environment:
+      POSTGRES_DB: pacsdb
+      POSTGRES_USER: pacs
+      POSTGRES_PASSWORD: pacs
+      AUTH_SERVER_URL: https://keycloak:8843
+      UI_AUTH_SERVER_URL: https://localhost:8843
+      WILDFLY_CHOWN: /storage
+      WILDFLY_WAIT_FOR: ldap:389 db:5432 keycloak:8843
+    depends_on:
+      - ldap
+      - keycloak
+      - db
+    volumes:
+      - ./wildfly:/opt/wildfly/standalone
+      - ./storage:/storage
+

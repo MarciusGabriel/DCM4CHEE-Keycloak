@@ -1,0 +1,210 @@
+{
+  "title": "Configuración UI",
+  "description": "Configuración UI.",
+  "type": "object",
+  "required": [
+    "dcmuiConfigName",
+    "dcmuiHideOtherPatientIDs"
+  ],
+  "properties": {
+    "dcmuiConfigName": {
+      "title": "Nombre Configuración UI",
+      "description": "Nombre Configuración UI.",
+      "type": "string"
+    },
+    "dcmuiModalities": {
+      "title": "Modalidades Estadísticas",
+      "description": "Modalidades preseleccionadas que deben mostrarse en la página de Estadísticas.",
+      "type": "array",
+      "items" : {
+        "type": "string"
+      }
+    },
+    "dcmuiLanguageConfig":{
+      "title": "Language Config",
+      "description": "Config the languages of the UI",
+      "titleKey":"{dcmuiLanguageConfigName}",
+      "type": "array",
+      "items" : {
+        "$ref": "uiLanguage.schema.json"
+      }
+    },
+    "dcmuiWidgetAets": {
+      "title": "AETs Widget",
+      "description": "Seleccione los AETs que desea ver en el widget AET, donde puede seleccionar en cual de ellos el nuevo AET añadido debe estar como `Título AE Llamada Aceptada`.",
+      "type": "array",
+      "items" : {
+        "type": "string"
+      },
+      "format": "dcmAETitle"
+    },
+    "dcmuiBackgroundURL": {
+      "title": "URL del fondo",
+      "description": "URL del fondo para cambiar el fondo de la interfaz de usuario; puede ser una URL relativa o absoluta; la imagen debe tener una anchura mínima de 1024px.",
+      "type": "string"
+    },
+    "dcmuiHideOtherPatientIDs": {
+      "title": "Ocultar otros ID de pacientes",
+      "description": "Indica si se deben ocultar otros identificadores de pacientes del registro de pacientes presentes en la secuencia Otros ID de pacientes (0010,1002). Por defecto, todos los identificadores de paciente del registro de paciente se muestran separados por comas.",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmuiLogoURL": {
+      "title": "URL del logotipo",
+      "description": "URL del logotipo para cambiar el logotipo de la interfaz de usuario, puede ser una URL relativa o absoluta, la imagen debe tener una anchura de 140px y debe estar en formato png con fondo transparente.",
+      "type": "string"
+    },
+    "dcmuiDateTimeFormat": {
+      "title": "Formatear Fecha Hora",
+      "description": "Aquí puede formatear la fecha y la hora en la interfaz de usuario utilizando \"aaaa\" para el año, \"MM\" para el mes, \"dd\" para la fecha, \"HH\" para la hora, \"mm\" para los minutos, \"ss\" para los segundos y \"SSS\" para los milisegundos. Para dar formato a la Fecha, Hora y Fecha-Hora debe utilizar \"FECHA\", \"HORA\" y \"FECHA-HORA\", por ejemplo, así `DATE=aaaa-MM-dd, TIME=HH:mm, DATE-TIME=aaaa-MM-dd HH:mm`.",
+      "type": "string"
+    },
+    "dcmuiHideClock": {
+      "title": "Ocultar Reloj",
+      "description": "Ajuste a verdadero si desea ocultar el reloj en la interfaz de usuario.",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmuiPageTitle": {
+      "title": "Título de la Página",
+      "description": "Si se establece, se utilizará como Título de la página UI (El Texto mostrado en la Pestaña del Navegador).",
+      "type": "string"
+    },
+    "dcmuiPersonNameFormat": {
+      "title": "Formatear el nombre de la persona",
+      "description": "Aquí puede formatear el nombre de la persona en la interfaz de usuario utilizando: {FAMILY-NAME}, {GIVEN-NAME}, {MIDDLE-NAME}, {NAME-PREFIX}, {NAME-SUFFIX} para alfabético, o añadiendo 'I_' para la versión ideográfica y 'P_' para la versión fonética, como {P_FAMILY-NAME}, {I_NAME-SUFFIX}.",
+      "type": "string"
+    },
+    "dcmuiDefaultWidgetAets": {
+      "title": "AETs por defecto del widget",
+      "description": "Seleccione los AETs que deben preseleccionarse en los AETs del widget.",
+      "type": "array",
+      "items" : {
+        "type": "string"
+      },
+      "format": "dcmAETitle"
+    },
+    "dcmuiMWLWorklistLabel": {
+      "title": "Etiqueta de la lista de trabajo MWL",
+      "description": "Valores seleccionables para la etiqueta de la lista de trabajo MWL.",
+      "type": "array",
+      "items" : {
+        "type": "string"
+      },
+      "use": [
+        "$.dcmDevice.dcmArchiveDevice.dcmMWLImport.dcmMWLWorklistLabel",
+        "$.dicomNetworkAE[*].dcmNetworkAE.dcmArchiveNetworkAE.dcmMWLWorklistLabel",
+        "$.dcmDevice.hl7Application[*].dcmArchiveHL7Application.dcmMWLWorklistLabel",
+        "$.dcmDevice.dcmArchiveDevice.dcmArchiveAttributeCoercion[*].dcmMergeLocalMWLWorklistLabel[*]"
+      ]
+    },
+    "dcmuiInstitutionNameFilterType": {
+      "title": "Tipo de Filtro de Nombre de Institución",
+      "description": "Define cómo debe mostrarse el filtro de Nombre de Institución utilizado en la Página de Navegación y si debe haber un desplegable pre-rellenado y de dónde obtener esos datos.",
+      "type": "string",
+      "enum": [
+        "simple_filed|Simple input field|Simple input field",
+        "ui_config|Dropdown by using this config ( See next field 'Institution Names' )|Dropdown by using this config",
+        "db|Dropdown will be prefilled with the strings coming by calling the service '../institutions'|Dropdown by querying the Database"
+      ]
+    },
+    "dcmuiInstitutionName": {
+      "title": "Nombres de instituciones",
+      "description": "Se utilizará en combinación con el campo anterior 'Tipo de filtro de nombres de instituciones' para rellenar previamente el desplegable del filtro de nombres de instituciones en la página de navegación.",
+      "type": "array",
+      "items" : {
+        "type": "string"
+      }
+    },
+    "dcmuiAetConfig": {
+      "title": "Lista desplegable de AETs",
+      "description": "Defina qué AETs deben ser visibles en las listas desplegables de la UI.",
+      "titleKey":"{dcmuiAetListName}",
+      "type": "array",
+      "items" : {
+        "$ref": "uiAet.schema.json"
+      }
+    },
+    "dcmuiWebAppConfig": {
+      "title": "Lista desplegable de Aplicaciones de Red",
+      "description": "Defina qué Aplicaciones de Red deben estar visibles en la parte superior de la lista desplegable de la interfaz de usuario.",
+      "titleKey":"{dcmuiWebAppListName}",
+      "type": "array",
+      "items" : {
+        "$ref": "uiWebApp.schema.json"
+      }
+    },
+    "dcmuiPermission": {
+      "title": "Permiso",
+      "description": "Permiso.",
+      "titleKey":"{dcmuiPermissionName}",
+      "type": "array",
+      "items" : {
+        "$ref": "uiPermission.schema.json"
+      }
+    },
+    "dcmuiFilterTemplateObject": {
+      "title": "Plantilla de filtro UI",
+      "description": "Plantilla de filtro definida.",
+      "titleKey":"{dcmuiFilterTemplateGroupName} ( {dcmuiFilterTemplateID} )",
+      "type": "array",
+      "items" : {
+        "$ref": "uiFilterTemplate.schema.json"
+      }
+    },
+    "dcmuiDiffConfig": {
+      "title": "Configuración de diferencias de estudio",
+      "description": "Configuración de diferencias de estudio.",
+      "titleKey":"{dcmuiDiffConfigName}",
+      "type": "array",
+      "items" : {
+        "$ref": "uiDiffConfig.schema.json"
+      }
+    },
+    "dcmuiTableConfig": {
+      "title": "Configuración de tabla de IU",
+      "description": "Configuración de tabla.",
+      "titleKey":"{dcmuiTableConfigName}",
+      "type": "array",
+      "items" : {
+        "$ref": "uiTable.schema.json"
+      }
+    },
+    "dcmuiElasticsearchConfig": {
+      "title": "Configuración de UI Elasticsearch",
+      "description": "Configuración de Elasticsearch para la versión pro.",
+      "titleKey":"{dcmuiElasticsearchConfigName}",
+      "type": "array",
+      "items" : {
+        "$ref": "uiElasticsearch.schema.json"
+      }
+    },
+    "dcmuiDeviceClusterObject": {
+      "title": "Configuración de Grupos de UI",
+      "description": "Agrupar dispositivos en Grupos.",
+      "titleKey":"{dcmuiDeviceClusterName}",
+      "type": "array",
+      "items" : {
+        "$ref": "uiDeviceCluster.schema.json"
+      }
+    },
+    "dcmuiDashboardConfig": {
+      "title": "Configuración del Cuadro de Mando de IU",
+      "description": "Configuración del Cuadro de Mando de IU.",
+      "titleKey":"{dcmuiDashboardConfigName}",
+      "type": "array",
+      "items" : {
+        "$ref": "uiDashboard.schema.json"
+      }
+    },
+    "dcmuiCreateDialogTemplate": {
+      "title": "UI Plantilla de Diálogo",
+      "description": "Configuración de UI Crear Plantillas de Diálogo.",
+      "titleKey":"{dcmuiTemplateName}",
+      "type": "array",
+      "items" : {
+        "$ref": "uiDialogTemplate.schema.json"
+      }
+    }
+  }
+}

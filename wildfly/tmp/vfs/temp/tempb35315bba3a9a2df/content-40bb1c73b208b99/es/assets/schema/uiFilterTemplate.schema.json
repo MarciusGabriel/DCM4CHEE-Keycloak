@@ -1,0 +1,51 @@
+{
+  "title": "Plantilla de filtro UI",
+  "description": "Plantilla de filtro definida.",
+  "type": "object",
+  "required": [
+    "dcmuiFilterTemplateGroupName",
+    "dcmuiFilterTemplateID",
+    "dcmuiFilterTemplateFilters"
+  ],
+  "properties": {
+    "dcmuiFilterTemplateGroupName": {
+      "title": "Nombre",
+      "description": "Nombre de la plantilla.",
+      "type": "string"
+    },
+    "dcmuiFilterTemplateID": {
+      "title": "ID",
+      "description": "ID del filtro al que se puede aplicar esta plantilla.",
+      "type": "string"
+    },
+    "dcmuiFilterTemplateDescription": {
+      "title": "Descripción",
+      "description": "Descripción de la plantilla de filtro.",
+      "type": "string"
+    },
+    "dcmuiFilterTemplateUsername": {
+      "title": "Nombre de usuario",
+      "description": "Nombre de usuario que puede usar esta plantilla.",
+      "type": "string"
+    },
+    "dcmuiFilterTemplateRole": {
+      "title": "Rol",
+      "description": "Nombre de usuario que puede utilizar esta plantilla.",
+      "type": "string"
+    },
+    "dcmuiFilterTemplateFilters": {
+      "title": "Filtros",
+      "description": "Filtros por defecto en esta plantilla, filtro pare key=value (ejemplo LocalAET=DCM4CHEE). Para el filtro de fecha puede utilizar las palabras clave predefinidas ( hoy, ayer, esta_semana, este_mes, ultima_semana, ultimo_mes, este_trimestre, ultimo_trimestre, este_año, ultimo_año) para que se puedan generar los valores dinámicos de los filtros.",
+      "type": "array",
+      "items" : {
+        "type": "string"
+      }
+    },
+    "dcmuiFilterTemplateDefault": {
+      "title": "Por defecto",
+      "description": "Utilizar esta plantilla por defecto.",
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

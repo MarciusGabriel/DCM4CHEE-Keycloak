@@ -1,0 +1,236 @@
+{
+  "title": "Coerción de atributos de archivo - Legacy",
+  "description": "Coerción de atributos de archivo de DIMSE recibidos/enviados",
+  "type": "object",
+  "required": [
+    "cn",
+    "dcmDIMSE",
+    "dicomTransferRole",
+    "dcmRulePriority",
+    "dcmRetrieveAsReceived",
+    "dcmNoKeywords",
+    "dcmMWLImportFilterBySCU",
+    "dcmAttributeUpdatePolicy",
+    "dcmTrimISO2022CharacterSet"
+  ],
+  "properties": {
+    "cn": {
+      "title": "Nombre",
+      "description": "Nombre arbitrario/significativo del atributo de archivo Coerción",
+      "type": "string"
+    },
+    "dcmRulePriority": {
+      "title": "Prioridad de regla",
+      "description": "Si la condición de varias coerciones de atributos de archivo (legado) coincide para una imagen recibida, se aplica la coerción de mayor prioridad. Si hay varias coerciones coincidentes con la misma prioridad, no se define qué coerción se aplica.",
+      "type": "integer",
+      "default" : 0,
+      "minimum": 0
+    },
+    "dcmDIMSE": {
+      "title": "DIMSE",
+      "description": "Elemento de mensaje DICOM sobre el que se aplicará esta coerción de atributo. También <a href=\"https://github.com/dcm4che/dcm4chee-arc-light/wiki/Legacy-Archive-Attribute-Coercion---Application-of-multiple-coercions-using-one-coercion-rule#dimse\" target=\"_blank\">aplicable si las peticiones se reciben a través de web.</a>",
+      "type": "string",
+      "enum": [
+        "N_CREATE_RQ",
+        "C_STORE_RQ",
+        "C_FIND_RQ",
+        "C_FIND_RSP"
+      ]
+    },
+    "dicomTransferRole": {
+      "title": "Rol de transferencia DICOM",
+      "description": "Rol de transferencia DICOM del peer DICOM AE.",
+      "type": "string",
+      "enum": [
+        "SCU",
+        "SCP"
+      ]
+    },
+    "dcmSOPClass": {
+      "title": "Clase SOP UID",
+      "description": "UID de la clase SOP a la que se aplicará esta coerción de atributos. Aplicar sobre cualquiera si está ausente.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "format": "dcmSOPClass"
+    },
+    "dcmProperty": {
+      "title": "Condiciones",
+      "description": "Condiciones en formato {key}[!]={value}. Consulte <a href=\"https://github.com/dcm4che/dcm4chee-arc-light/wiki/Conditions\" target=\"_blank\">aplicación, formato y algunos ejemplos.</a>",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "format": "dcmProperty"
+    },
+    "dcmRetrieveAsReceived": {
+      "title": "Recuperar como recibido",
+      "description": "Desactiva la fusión de la información de la base de datos en el objeto compuesto recuperado, devolviendo los objetos tal y como se recibieron. Sólo efectivo con DIMSE = C_STORE_RQ y Rol de Transferencia DICOM = SCP.",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmDeIdentification": {
+      "title": "Desidentificación",
+      "description": "Desidentifica objetos de acuerdo con el Perfil de Confidencialidad de Nivel de Aplicación Básico especificado en DICOM PS3.15. La selección de cualquier opción incluye implícitamente el perfil de confidencialidad de nivel de aplicación básico.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "BasicApplicationConfidentialityProfile",
+          "RetainLongitudinalTemporalInformationFullDatesOption",
+          "RetainDeviceIdentityOption",
+          "RetainInstitutionIdentityOption",
+          "RetainUIDsOption",
+          "RetainPatientIDHashOption"
+        ]
+      }
+    },
+    "dcmURI": {
+      "title": "URI de la hoja de estilo XSL",
+      "description": "Especifica el URI de la hoja de estilo XSL para la coerción de atributos",
+      "type": "string"
+    },
+    "dcmNoKeywords": {
+      "title": "Palabra clave sin atributo",
+      "description": "Indica si las palabras clave de atributo deben omitirse en el XML DICOM pasado a XSLT",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmMergeMWLMatchingKey": {
+      "title": "Fusionar clave de coincidencia MWL",
+      "description": "Especifica el atributo del objeto recibido para buscar el elemento MWL utilizado para forzar los atributos de solicitud. Si está ausente, no se forzarán los atributos de solicitud de los objetos recibidos. Consulte <a href=\"https://github.com/dcm4che/dcm4chee-arc-light/wiki/Legacy-Archive-Attribute-Coercion---Application-of-multiple-coercions-using-one-coercion-rule#configurations-specific-to-merging-from-mwl-coercion-type\" target=\"_blank\">aplicabilidad de las claves de coincidencia de fusión MWL.</a>",
+      "type": "string",
+      "enum": [
+        "PatientID",
+        "PatientIDOnly",
+        "PatientIDAccessionNumber",
+        "AccessionNumber",
+        "StudyInstanceUID",
+        "ScheduledProcedureStepID"
+      ]
+    },
+    "dcmMergeMWLTemplateURI": {
+      "title": "Fusionar URI de plantillas MWL",
+      "description": "Especifica el URI de la hoja de estilo para coaccionar los atributos de solicitud de los objetos recibidos a partir de elementos DICOM MWL coincidentes. Sólo es efectivo si se especifica dcmMergeMWLMatchingKey.",
+      "type": "string"
+    },
+    "dcmMergeMWLSCP": {
+      "title": "Fusionar MWL SCP",
+      "description": "AE Título del SCP MWL externo utilizado para buscar el elemento MWL para coaccionar los atributos de solicitud de los objetos recibidos. Si está configurado, el SCP MWL externo se consulta invocando un C-FIND RQ del Servicio MWL DICOM y se ignora el SCP MWL local de fusión.",
+      "type": "string",
+      "format": "dcmAETitle"
+    },
+    "dcmMergeLocalMWLWorklistLabel": {
+      "title": "Fusionar etiqueta de lista de trabajo MWL local",
+      "description": "SOlo considerar elementos MWL con uno de los valores especificados de su etiqueta de lista de trabajo (0074,1202) en el Archive DB para coaccionar los atributos de solicitud de los objetos recibidos. Si está ausente, el Archive DB se consulta en busca de elementos MWL coincidentes con cualquier etiqueta de lista de trabajo (0074,1202).",
+      "type": "array",
+      "items" : {
+        "type": "string"
+      },
+      "format": "dcmMWLWorklistLabel"
+    },
+    "dcmMergeLocalMWLWithStatus" : {
+      "title": "Merge Local MWL With Status",
+      "description": "Only consider MWL items with one of the specified Scheduled Procedure Step Status codes. If absent, MWL items with any Scheduled Procedure Step Status are considered.",
+      "type": "array",
+      "items" : {
+        "type": "string",
+        "enum": [
+          "SCHEDULED",
+          "ARRIVED",
+          "READY",
+          "STARTED",
+          "DEPARTED",
+          "CANCELED",
+          "DISCONTINUED",
+          "COMPLETED"
+        ]
+      }
+    },
+    "dcmMWLImportFilterBySCU": {
+      "title": "Fusionar filtro MWL por SCU",
+      "description": "Indica que se aplique el filtro especificado a las coincidencias devueltas por el SCP MWL externo.",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmLeadingCFindSCP": {
+      "title": "Leading C-FIND SCP",
+      "description": "AE Título del SCP C-FIND externo para la coerción de atributos con atributos de pacientes y estudios obtenidos de este AE. Si no se especifica ningún conjunto de atributos concreto para el SCP C-FIND, se obtendrán todos los atributos del filtro de atributos de pacientes y estudios configurado.",
+      "type": "string",
+      "format": "dcmAETitle"
+    },
+    "dcmAttributeUpdatePolicy": {
+      "title": "Política de actualización de atributos",
+      "description": "Especifica cómo se actualizarán los atributos con los atributos obtenidos de Leading C-FIND SCP. Consulte <a href=\"https://github.com/dcm4che/dcm4chee-arc-light/wiki/Attribute-Update-Policy\" target=\"_blank\"> Significado de las políticas de actualización de atributos.</a>",
+      "type": "string",
+      "default": "MERGE",
+      "enum": [
+        "PRESERVE",
+        "SUPPLEMENT",
+        "MERGE",
+        "OVERWRITE"
+      ]
+    },
+    "dcmTrimISO2022CharacterSet": {
+      "title": "Recortar el juego de caracteres ISO 2022",
+      "description": "Sustituir el código único de los juegos de caracteres de un solo byte con extensiones de código por el código de los juegos de caracteres de un solo byte sin extensiones de código. Consulte <a href=\"https://github.com/dcm4che/dcm4chee-arc-light/wiki/Legacy-Archive-Attribute-Coercion---Application-of-multiple-coercions-using-one-coercion-rule#configurations-specific-to-trim-iso-2022-character-set-coercion-type\" target=\"_blank\"> conjuntos de caracteres a los que se aplica esta coerción.</a>",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmUseCallingAETitleAs": {
+      "title": "Utilizar el título AE de llamada como",
+      "description": "Identifica el atributo que se establece con el valor de la AET de llamada si está ausente o vacía. ScheduledStationAETitle (= Título AE de la estación programada (0040,0001) en el elemento de la secuencia de pasos del procedimiento programado (0040,0100)), SendingApplicationEntityTitleOfSeries (= Título de la entidad de aplicación de envío de la serie (7777,xx37)).",
+      "type": "string",
+      "enum": [
+        "ScheduledStationAETitle",
+        "SendingApplicationEntityTitleOfSeries"
+      ]
+    },
+    "dcmNullifyTag": {
+      "title": "Anular etiqueta de atributo",
+      "description": "Etiqueta DICOM del atributo que debe anularse como cadena hexadecimal",
+      "type": "array",
+      "items" : { "type": "string" },
+      "format": "dcmTag"
+    },
+    "dcmMergeAttribute": {
+      "title": "Atributo de fusión",
+      "description": "Combinar atributo DICOM en formato {attributeID}={value}. {attributeID} dentro de {value} será sustituido por el valor de ese atributo en el conjunto de datos original. Consulte <a href=\"https://github.com/dcm4che/dcm4chee-arc-light/wiki/Legacy-Archive-Attribute-Coercion---Application-of-multiple-coercions-using-one-coercion-rule#configurations-specific-to-merge-attributes-coercion-type\" target=\"_blank\"> aplicabilidad, formatos y algunos ejemplos.</a>",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "format": "dcmProperty"
+    },
+    "dcmNullifyIssuerOfPatientID": {
+      "title": "Anular el emisor del paciente ID",
+      "description": "Anular condicionalmente el Emisor de ID de paciente (0010,0021) y la Secuencia de calificadores del Emisor de ID de paciente (0010,0024) de los objetos recibidos.",
+      "type": "string",
+      "enum": [
+        "ALWAYS",
+        "MATCHING",
+        "NOT_MATCHING"
+      ]
+    },
+    "dcmIssuerOfPatientID": {
+      "title": "Emisor del paciente ID",
+      "description": "Se cotejan el ID del emisor del paciente (0010,0021) y, opcionalmente, los valores del ID de entidad universal (0040,0032) y el tipo de ID de entidad universal (0040,0033) del elemento de la secuencia de calificadores del ID del emisor del paciente (0010,0024) con los valores de los objetos recibidos, si Nullify Issuer of Patient ID tiene el valor MATCHING o NOT_MATCHING. Especifique los valores en el formato: {IssuerOfPatientID}[&{UniversalEntityID&UniversalEntityIDType}].",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dcmIssuerOfPatientIDFormat": {
+      "title": "Emisor del formato paciente ID",
+      "description": "Formato del emisor del ID del paciente (0010,0021) derivado de otros atributos. Por ejemplo, \"{00100010,hash}-{00100030}\": utilice el valor hash del nombre del paciente y la fecha de nacimiento separados por \"-\". Consulte <a href=\"https://github.com/dcm4che/dcm4chee-arc-light/wiki/Legacy-Archive-Attribute-Coercion---Application-of-multiple-coercions-using-one-coercion-rule#configurations-specific-to-supplement-issuer-of-patient-id-format-coercion-type\" target=\"_blank\"> aplicabilidad, formatos y algunos ejemplos.</a>",
+      "type": "string"
+    },
+    "dcmSupplementFromDeviceReference": {
+      "title": "Suplemento del dispositivo",
+      "description": "Nombre del Dispositivo desde el que se complementan las Autoridades de Asignación y otra información. Consulte <a href=\"https://github.com/dcm4che/dcm4chee-arc-light/wiki/Legacy-Archive-Attribute-Coercion---Application-of-multiple-coercions-using-one-coercion-rule#configurations-specific-to-supplementing-from-device-coercion-type\" target=\"_blank\"> aplicabilidad, formatos y algunos ejemplos.</a>",
+      "type": "string",
+      "format": "dicomDeviceName"
+    }
+  }
+}

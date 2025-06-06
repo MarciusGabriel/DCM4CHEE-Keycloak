@@ -1,0 +1,79 @@
+{
+  "title": "Extensión AE de red",
+  "description": "dcm4che atributos propietarios de la red AE",
+  "type": "object",
+  "properties": {
+    "dcmRoleSelectionNegotiationLenient": {
+      "title": "Negociación de selección de rol Lenient",
+      "description": "Indica que se desactive la comprobación de la negociación de selección de rol SCP/SCU necesaria al enviar DIMSE-RQs. Sobrescribe el valor especificado a nivel de dispositivo.",
+      "type": "boolean"
+    },
+    "dcmAcceptedCallingAETitle": {
+      "title": "Título AE Llamada Aceptada",
+      "description": "Prohibir aceptar asociaciones de AE no listados. Si no está presente, se aceptará cualquier AE.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dcmOtherAETitle": {
+      "title": "Otro título AE",
+      "description": "Título AE adicional de AE de red - también aceptará RQs de asociación con dicho título AE llamado.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dcmNoAsyncModeCalledAETitle": {
+      "title": "Ningún modo asíncrono llamado AE Título",
+      "description": "Título del AE de la red par no capaz de gestionar correctamente la negociación de la ventana de operaciones asíncronas. Suprimir la inclusión del correspondiente sub-ítem de datos de usuario en los RQs A-ASSOCIATE a ese AE de red.",
+      "type": "array",
+      "format": "dcmAETitle",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dcmMasqueradeCalledAETitle": {
+      "title": "Masquerade Called AE Title",
+      "description": "Called AE Title used for initiating network associations, masquerading the configured AE Title of the remote Network AE. Format <Configured AE Title>:<Used Called AE Title>.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dcmMasqueradeCallingAETitle": {
+      "title": "Enmascaramiento del Título AE Llamado",
+      "description": "Título AE Llamado utilizado para iniciar asociaciones de red, enmascarando el Título AE real para este AE de Red - el prefijo opcional [<Called AE Title>] limita el enmascaramiento a la asociación a un Título AE particular.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dcmPreferredTransferSyntax": {
+      "title": "Sintaxis de transferencia preferida",
+      "description": "Sintaxis de transferencia preferida para la selección de la sintaxis de transferencia dentro de un contexto de presentación, ordenada por prioridad. Si no existe, se seleccionará la primera sintaxis de transferencia aceptable en el contexto de presentación ofrecido. Puede ser sobrescrita por valores configurados para determinadas capacidades de transferencia de este AE.",
+      "type": "array",
+      "format": "dcmTransferSyntax",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dcmShareTransferCapabilitiesFromAETitle": {
+      "title": "Share Transfer Capabilities from AE Title",
+      "description": "Indicates that this Network AE supports the Transfer Capabilities specified for another Network AE of the same Device.",
+      "type": "string",
+      "format": "dcmArchiveAETitle"
+    },
+    "hl7ApplicationName": {
+      "title": "Nombre de la aplicación HL7",
+      "description": "Nombre de la aplicación HL7 y de la instalación (Aplicación|Instalación) asociada a este AE.",
+      "type": "string",
+      "format": "hl7ApplicationName"
+    },
+    "dcmArchiveNetworkAE": {
+      "title": "Archivo de red AE",
+      "description": "DICOM Archivo de red AE información relacionada.",
+      "$ref": "archiveNetworkAE.schema.json"
+    }
+  }
+}

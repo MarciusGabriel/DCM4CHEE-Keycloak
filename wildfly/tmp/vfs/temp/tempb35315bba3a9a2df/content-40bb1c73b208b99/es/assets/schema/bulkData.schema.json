@@ -1,0 +1,43 @@
+{
+  "title": "Descriptor de datos en bloque",
+  "description": "Descriptor de datos en bloque",
+  "type": "object",
+  "required": [
+    "dcmBulkDataDescriptorID",
+    "dcmBulkDataExcludeDefaults"
+  ],
+  "properties": {
+    "dcmBulkDataDescriptorID": {
+      "title": "ID del Descriptor de datos en bloque",
+      "description": "ID del Descriptor de datos en bloque",
+      "type": "string",
+      "use": [
+        "$.dcmDevice.dcmArchiveDevice.dcmBulkDataDescriptorID"
+      ]
+    },
+    "dcmBulkDataExcludeDefaults": {
+      "title": "Excluir valores por defecto",
+      "description": "Indica si los atributos especificados por la clase de servicio \"Composite Instance Retrieve Without Bulk Data\" se tratarán implícitamente como datos masivos (=false) o no (=true).",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmAttributeSelector": {
+      "title": "Selector de atributos",
+      "description": "Especifica atributos individuales tratados como datos masivos por XPath (por ejemplo, 'DicomAttribute[@tag=\"54000100\"]/Item/DicomAttribute[@tag=\"54001010\"]' ).",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "format": "dcmAttributeSelector"
+    },
+    "dcmBulkDataVRLengthThreshold": {
+      "title": "Umbral de longitud VR",
+      "description": "Especifica tratar todos los Atributos con una Representación de Valor (VR) particular cuya longitud de valor exceda el umbral especificado como Fecha de Bulto. Formato: <VR>=<longitud-umbral>.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "format": "dcmBulkDataVRLengthThreshold"
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Lector de imágenes",
+  "description": "Especifica los lectores de imágenes Java Image IO utilizados para descomprimir imágenes DICOM comprimidas.",
+  "type": "object",
+  "required": [
+    "dicomTransferSyntax",
+    "dcmIIOFormatName"
+  ],
+  "properties": {
+    "dicomTransferSyntax": {
+      "title": "Sintaxis de transferencia",
+      "description": "Sintaxis de transferencia de imagen DICOM comprimida.",
+      "type": "string",
+      "format": "dcmTransferSyntax"
+    },
+    "dcmIIOFormatName": {
+      "title": "Nombre del formato del lector de imágenes IO",
+      "description": "Nombre del formato del lector de imágenes IO.",
+      "type": "string"
+    },
+    "dcmJavaClassName": {
+      "title": "Nombre de clase Java",
+      "description": "Clase Java totalmente calificada del lector de imágenes IO. Si no existe, utilice cualquier lector de imágenes encontrado para el nombre de formato especificado.",
+      "type": "string"
+    },
+    "dcmPatchJPEGLS": {
+      "title": "Parche JPEG-LS",
+      "description": "Parche JPEG-LS antes de descomprimir.",
+      "type": "string",
+      "enum": [
+          "JAI2ISO",
+          "ISO2JAI",
+          "ISO2JAI_IF_APP_OR_COM"
+      ]
+    },
+    "dcmImageReadParam": {
+      "title": "Parametros de lectura de imagen",
+      "description": "Parámetros de lectura de imagen (nombre=valor).",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

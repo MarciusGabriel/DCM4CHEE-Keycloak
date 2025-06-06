@@ -1,0 +1,51 @@
+{
+  "title": "Configuración de las Columnas de la Tabla de Estudio UI",
+  "description": "Columnas de la Tabla de Estudio.",
+  "type": "object",
+  "required": [
+    "dcmuiColumnName",
+    "dcmuiValuePath",
+    "dcmuiValueType"
+  ],
+  "properties": {
+    "dcmuiColumnName": {
+      "title": "Nombre de Columna",
+      "description": "Nombre de la Columna en la Tabla de Estudio.",
+      "type": "string"
+    },
+    "dcmuiColumnId": {
+      "title": "ID de Columna",
+      "description": "Cada columna posible que se utiliza en la UI, tiene un ID, utilizando el ID puede cambiar algunas de las propiedades de esa Columna, como Nombre, Descripción, Orden o ancho.",
+      "type": "string"
+    },
+    "dcmuiColumnTitle": {
+      "title": "Descripción de la Columna",
+      "description": "Descripción de la Columna, mostrada al pasar el ratón por encima.",
+      "type": "string"
+    },
+    "dcmuiValuePath": {
+      "title": "Ruta del valor",
+      "description": "Valor (objeto json) Ruta de la columna (por ejemplo: '00100010.Value[0].Alphabetic' para el nombre del paciente o '00100020.Value[0]' para el ID del paciente).",
+      "type": "string"
+    },
+    "dcmuiValueType": {
+      "title": "Tipo del valor",
+      "description": "Tipo de la columna como obtener el valor, por defecto debe ser 'valor'.",
+      "type": "string",
+      "enum": [
+        "value",
+        "pipe"
+      ]
+    },
+    "dcmuiColumnWidth": {
+      "title": "Ancho de la columna en peso",
+      "description": "Ancho de la columna en peso ( x > 0.1 - x < infinito ) por defecto 1.",
+      "type":  "string"
+    },
+    "dcmuiColumnOrder": {
+      "title": "Orden de la columna",
+      "description": "Orden de la columna.",
+      "type":  "number"
+    }
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "title": "Descriptor del exportador",
+  "description": "Descriptor del exportador.",
+  "type": "object",
+  "required": [
+    "dcmExporterID",
+    "dcmURI",
+    "dcmQueueName",
+    "dcmExportPriority",
+    "dcmInstanceAvailability",
+    "dicomAETitle",
+    "dcmExportAsSourceAE",
+    "dcmRejectForDataRetentionExpiry"
+  ],
+  "properties": {
+    "dcmExporterID": {
+      "title": "ID del exportador",
+      "description": "ID del exportador.",
+      "type": "string",
+      "use": [
+        "$.dcmDevice.dcmArchiveDevice.dcmExportPriorsRule[*].dcmExporterID[*]",
+        "$.dcmDevice.dcmArchiveDevice.dcmExportRule[*].dcmExporterID[*]",
+        "$.dcmDevice.dcmArchiveDevice.hl7ExportRule[*].dcmExporterID[*]",
+        "$.dcmDevice.dcmArchiveDevice.dcmStudyRetentionPolicy[*].dcmExporterID",
+        "$.dcmDevice.dcmArchiveDevice.hl7StudyRetentionPolicy[*].dcmExporterID",
+        "$.dicomNetworkAE[*].dcmNetworkAE.dcmArchiveNetworkAE.dcmExportPriorsRule[*].dcmExporterID[*]",
+        "$.dicomNetworkAE[*].dcmNetworkAE.dcmArchiveNetworkAE.dcmExportRule[*].dcmExporterID[*]",
+        "$.dicomNetworkAE[*].dcmNetworkAE.dcmArchiveNetworkAE.dcmStudyRetentionPolicy[*].dcmExporterID",
+        "$.dcmDevice.hl7Application[*].dcmArchiveHL7Application.hl7ExportRule[*].dcmExporterID[*]",
+        "$.dcmDevice.hl7Application[*].dcmArchiveHL7Application.hl7StudyRetentionPolicy[*].dcmExporterID",
+        "$.dcmDevice.dcmuiConfig[*].dcmuiDashboardConfig[*].dcmuiExportName[*]"
+      ]
+    },
+    "dcmURI": {
+      "title": "Exporter URI",
+      "description": "RFC2079:Identificador uniforme de recursos. Se refiere a varios <a href=\"https://github.com/dcm4che/dcm4chee-arc-light/wiki/Exporter-Properties\" target=\"_blank\">URI de exportador</a> que pueden configurarse en función del tipo de exportador.",
+      "type": "string"
+    },
+    "dcmQueueName": {
+      "title": "Nombre de la cola",
+      "description": "Nombre de la cola de tareas.",
+      "type": "string",
+      "format":"dcmQueueName"
+    },
+    "dicomDescription": {
+      "title": "Descripción del exportador",
+      "description": "Descripción en texto sin restricciones del exportador.",
+      "type": "string"
+    },
+    "dicomAETitle": {
+      "title": "Título de la Entidad de Aplicación (AE) de Archivo",
+      "description": "Título de la Entidad de Aplicación (AE) de Archivo.",
+      "type": "string",
+      "format": "dcmArchiveAETitle"
+    },
+    "dcmExportAsSourceAE": {
+      "title": "Exportar como Entidad de Aplicación (AE) de Origen",
+      "description": "Enmascarar el título de la Entidad de Aplicación (AE) de Archivo por el título de la Entidad de Aplicación (AE) de la que se recibió una Serie al establecer la Asociación a la Entidad de Aplicación (AE) de Destino.",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmDeleteStudyFromStorageID": {
+      "title": "Borrar estudio del ID de almacenamiento",
+      "description": "ID del sistema de almacenamiento del que se borrarán los objetos del estudio exportado. Sólo es efectivo para tareas de exportación a nivel de estudio.",
+      "type": "string",
+      "format": "dcmStorageID"
+    },
+    "dcmRejectForDataRetentionExpiry": {
+      "title": "Rechazar Entidad por Vencimiento de Retención de Datos",
+      "description": "Rechazar entidad por Vencimiento de Retención de Datos tras la exportación al finalizar la Tarea de Exportación.",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmStgCmtSCP": {
+      "title": "Título AE del SCP de compromiso de almacenamiento",
+      "description": "Título AE del SCP de compromiso de almacenamiento externo utilizado para verificar la exportación a otro archivo.",
+      "type": "string",
+      "format": "dcmAETitle"
+    },
+    "dcmIanDestination": {
+      "title": "Destino Ian",
+      "description": "Destino para enviar IAN N-CREATE RQ",
+      "type": "array",
+      "items" : { "type": "string" },
+      "format": "dcmAETitle"
+    },
+    "dcmRetrieveAET": {
+      "title": "Recuperar Título AE",
+      "description": "Título AE asociado con AE de red.",
+      "type": "array",
+      "items": { "type": "string" },
+      "format": "dcmArchiveAETitle"
+    },
+    "dcmRetrieveLocationUID": {
+      "title": "Recuperar UID de ubicación",
+      "description": "Recuperar UID de ubicación.",
+      "type": "string",
+      "pattern": "^[0-2]((\\.0)|(\\.[1-9][0-9]*))*$"
+    },
+    "dcmInstanceAvailability": {
+      "title": "Disponibilidad de instancia",
+      "description": "Disponibilidad de instancia.",
+      "type": "string",
+      "default": "ONLINE",
+      "enum": [
+        "ONLINE",
+        "NEARLINE",
+        "OFFLINE"
+      ]
+    },
+    "dcmSchedule": {
+      "title": "Horario de exportación",
+      "description": "Retrasa la exportación a los periodos de tiempo especificados. Si no especifica ningún calendario de exportación, la tarea de exportación se pondrá en cola para ser procesada inmediatamente. Format: 'hour=[0-23] dayOfWeek=[0-6]' (0=Sunday)",
+      "type": "array",
+      "items": { "type": "string" },
+      "format": "dcmSchedule"
+    },
+    "dcmProperty": {
+      "title": "Propiedad del exportador",
+      "description": "Especifique las propiedades del exportador en formato {name}={value}. Consulte varios <a href=\"https://github.com/dcm4che/dcm4chee-arc-light/wiki/Exporter-Properties\" target=\"_blank\">Propiedades del exportador</a> que pueden configurarse en función del tipo de exportador.",
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

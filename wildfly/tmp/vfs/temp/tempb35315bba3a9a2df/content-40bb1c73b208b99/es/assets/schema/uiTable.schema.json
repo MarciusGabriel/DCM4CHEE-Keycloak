@@ -1,0 +1,51 @@
+{
+  "title": "Configuración de la tabla UI",
+  "description": "Configuración de la tabla UI para la versión pro.",
+  "type": "object",
+  "required": [
+    "dcmuiTableConfigName"
+  ],
+  "properties": {
+    "dcmuiTableConfigName": {
+      "title": "Nombre de configuración",
+      "description": "Nombre de configuración de la tabla UI.",
+      "type": "string"
+    },
+    "dcmuiTableConfigUsername": {
+      "title": "Nombre de usuario",
+      "description": "Nombre de usuario para el que debe estar disponible este conjunto.",
+      "type": "array",
+      "items" : {
+        "type": "string"
+      }
+    },
+    "dcmuiTableConfigRoles": {
+      "title": "Rol",
+      "description": "Nombre de usuario que puede utilizar este conjunto (Si se establece el nombre de usuario, el rol será ignorado).",
+      "type": "array",
+      "items" : {
+        "type": "string"
+      }
+    },
+    "dcmuiTableID": {
+      "title": "Identificador de Tabla",
+      "description": "El identificador de la tabla en la interfaz de usuario para la que la configuración debe ser efectiva.",
+      "type": "string"
+    },
+    "dcmuiTableConfigIsDefault": {
+      "title": "Es Predeterminado",
+      "description": "Configura esta columna como predeterminada. (Asegúrese de que sólo uno de los Conjuntos - hermanos hijo se establece por defecto).",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmuiTableColumnConfigObjects": {
+      "title": "Columnas de la tabla",
+      "description": "Define las columnas de la tabla.",
+      "titleKey":"{dcmuiColumnName}",
+      "type": "array",
+      "items" : {
+        "$ref": "uiTableColumns.schema.json"
+      }
+    }
+  }
+}
