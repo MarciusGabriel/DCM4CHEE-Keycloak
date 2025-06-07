@@ -1,0 +1,41 @@
+{
+  "title": "Configuración URL Elasticsearch UI",
+  "description": "Red URL Elasticsearch.",
+  "type": "object",
+  "required": [
+    "dcmuiElasticsearchURLName",
+    "dcmuiElasticsearchURL",
+    "dcmuiElasticsearchIsDefault",
+    "dcmuiElasticsearchInstalled"
+  ],
+  "properties": {
+    "dcmuiElasticsearchURLName": {
+      "title": "Nombre URL Elasticsearch",
+      "description": "Nombre URL Elasticsearch UI.",
+      "type": "string"
+    },
+    "dcmuiElasticsearchWebApp": {
+      "title": "Aplicación de red de Elasticsearch",
+      "description": "Aplicación de red que se utilizará para extraer la URL de Elasticsearch y acceder a Elasticsearch.",
+      "type": "string",
+      "format": "webApp"
+    },
+    "dcmuiAuditEnterpriseSiteID": {
+      "title": "Auditoría de la Empresa SiteID",
+      "description": "Establecer la Auditoría de la Empresa SiteID que se utilizará en las consultas de Elasticsearch.",
+      "type": "string"
+    },
+    "dcmuiElasticsearchIsDefault": {
+      "title": "es por defecto",
+      "description": "Establece la URL por defecto. (Asegúrese de que sólo una de las urls - hermanos hijo se establece como predeterminada).",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmuiElasticsearchInstalled": {
+      "title": "Instalado",
+      "description": "Utiliza esta URL en la UI.",
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

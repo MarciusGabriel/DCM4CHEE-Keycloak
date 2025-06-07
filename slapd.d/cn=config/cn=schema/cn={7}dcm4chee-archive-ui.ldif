@@ -1,0 +1,396 @@
+# AUTO-GENERATED FILE - DO NOT EDIT!! Use ldapmodify.
+# CRC32 aaa0dec1
+dn: cn={7}dcm4chee-archive-ui
+objectClass: olcSchemaConfig
+cn: {7}dcm4chee-archive-ui
+olcAttributeTypes: {0}( 1.2.40.0.13.1.15.111.3.1 NAME 'dcmuiConfigName' DESC '
+ UI Configuration Name' EQUALITY caseExactMatch SUBSTR caseExactSubstringsMatc
+ h SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {1}( 1.2.40.0.13.1.15.111.3.2 NAME 'dcmuiPermissionName' DE
+ SC 'Name of Permission for UI Action' EQUALITY caseExactMatch SUBSTR caseExac
+ tSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {2}( 1.2.40.0.13.1.15.111.3.3 NAME 'dcmuiAction' DESC 'UI A
+ ction' EQUALITY caseExactIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGLE
+ -VALUE )
+olcAttributeTypes: {3}( 1.2.40.0.13.1.15.111.3.4 NAME 'dcmuiActionParam' DESC 
+ 'UI Action Parameter' EQUALITY caseExactMatch SUBSTR caseExactSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: {4}( 1.2.40.0.13.1.15.111.3.5 NAME 'dcmuiDiffConfigName' DE
+ SC 'Name of UI Configuration for comparing studies in two archives' EQUALITY 
+ caseExactMatch SUBSTR caseExactSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.12
+ 1.1.15 SINGLE-VALUE )
+olcAttributeTypes: {5}( 1.2.40.0.13.1.15.111.3.6 NAME 'dcmuiDiffCallingAET' DE
+ SC 'Calling AE Title used for comparing studies in two archives' EQUALITY cas
+ eExactIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VALUE )
+olcAttributeTypes: {6}( 1.2.40.0.13.1.15.111.3.7 NAME 'dcmuiDiffPrimaryCFindSC
+ P' DESC 'AE Title of primary C-FIND SCP for comparing studies in two archives
+ ' EQUALITY caseExactIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VALU
+ E )
+olcAttributeTypes: {7}( 1.2.40.0.13.1.15.111.3.8 NAME 'dcmuiDiffPrimaryCMoveSC
+ P' DESC 'AE Title of primary C-MOVE SCP for comparing studies in two archives
+ ' EQUALITY caseExactIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VALU
+ E )
+olcAttributeTypes: {8}( 1.2.40.0.13.1.15.111.3.9 NAME 'dcmuiDiffSecondaryCFind
+ SCP' DESC 'AE Title of secondary C-FIND SCP for comparing studies in two arch
+ ives' EQUALITY caseExactIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-
+ VALUE )
+olcAttributeTypes: {9}( 1.2.40.0.13.1.15.111.3.10 NAME 'dcmuiDiffSecondaryCMov
+ eSCP' DESC 'AE Title of secondary C-MOVE SCP for comparing studies in two arc
+ hives' EQUALITY caseExactIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGLE
+ -VALUE )
+olcAttributeTypes: {10}( 1.2.40.0.13.1.15.111.3.11 NAME 'dcmuiDiffCriteriaTitl
+ e' DESC 'Attribute Set Title' EQUALITY caseExactMatch SUBSTR caseExactSubstri
+ ngsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {11}( 1.2.40.0.13.1.15.111.3.12 NAME 'dcmuiDiffCriteriaNumb
+ er' DESC 'Attribute Set Number used to order Attribute Sets.' EQUALITY intege
+ rMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.27 SINGLE-VALUE )
+olcAttributeTypes: {12}( 1.2.40.0.13.1.15.111.3.13 NAME 'dcmuiDiffIncludeMissi
+ ng' DESC 'Indicate if missing Studies shall be included' EQUALITY booleanMatc
+ h SYNTAX 1.3.6.1.4.1.1466.115.121.1.7 SINGLE-VALUE )
+olcAttributeTypes: {13}( 1.2.40.0.13.1.15.111.3.14 NAME 'dcmuiDiffAction' DESC
+  'UI Diff Action' EQUALITY caseExactIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.
+ 1.26 )
+olcAttributeTypes: {14}( 1.2.40.0.13.1.15.111.3.15 NAME 'dcmuiDiffGroupButton'
+  DESC 'UI Diff Group Button' EQUALITY caseExactIA5Match SYNTAX 1.3.6.1.4.1.14
+ 66.115.121.1.26 )
+olcAttributeTypes: {15}( 1.2.40.0.13.1.15.111.3.16 NAME 'dcmuiDiffPrimaryCStor
+ eSCP' DESC 'AE Title of primary C-STORE SCP destination' EQUALITY caseExactIA
+ 5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VALUE )
+olcAttributeTypes: {16}( 1.2.40.0.13.1.15.111.3.17 NAME 'dcmuiDiffSecondaryCSt
+ oreSCP' DESC 'AE Title of secondary C-STORE SCP destination' EQUALITY caseExa
+ ctIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VALUE )
+olcAttributeTypes: {17}( 1.2.40.0.13.1.15.111.3.18 NAME 'dcmuiDashboardConfigN
+ ame' DESC 'UI Dashboard Configuration Name' EQUALITY caseExactIA5Match SYNTAX
+  1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VALUE )
+olcAttributeTypes: {18}( 1.2.40.0.13.1.15.111.3.19 NAME 'dcmuiQueueName' DESC 
+ 'Queue Names for UI Dashboard Configuration' EQUALITY caseExactIA5Match SYNTA
+ X 1.3.6.1.4.1.1466.115.121.1.26 )
+olcAttributeTypes: {19}( 1.2.40.0.13.1.15.111.3.44 NAME 'dcmuiExportName' DESC
+  'Export for UI Dashboard Configuration' EQUALITY caseExactIA5Match SYNTAX 1.
+ 3.6.1.4.1.1466.115.121.1.26 )
+olcAttributeTypes: {20}( 1.2.40.0.13.1.15.111.3.20 NAME 'dicomuiDeviceName' DE
+ SC 'Device Names for UI Dashboard Configuration' EQUALITY caseExactIA5Match S
+ YNTAX 1.3.6.1.4.1.1466.115.121.1.26 )
+olcAttributeTypes: {21}( 1.2.40.0.13.1.15.111.3.21 NAME 'dicomuiIgnoreParams' 
+ DESC 'Device Names for UI Dashboard Configuration' EQUALITY caseExactIA5Match
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 )
+olcAttributeTypes: {22}( 1.2.40.0.13.1.15.111.3.22 NAME 'dcmuiCountWebApp' DES
+ C 'UI Dashboard Count Web App' EQUALITY caseExactIA5Match SYNTAX 1.3.6.1.4.1.
+ 1466.115.121.1.26 SINGLE-VALUE )
+olcAttributeTypes: {23}( 1.2.40.0.13.1.15.111.3.23 NAME 'dcmuiElasticsearchCon
+ figName' DESC 'Name of Elasticsearch UI Configuration' EQUALITY caseExactMatc
+ h SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {24}( 1.2.40.0.13.1.15.111.3.24 NAME 'dcmuiElasticsearchURL
+ Name' DESC 'Elasticsearch URL Name' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.
+ 1.1466.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {25}( 1.2.40.0.13.1.15.111.3.25 NAME 'dcmuiElasticsearchWeb
+ App' DESC 'Elasticsearch Web App' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.
+ 1466.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {26}( 1.2.40.0.13.1.15.111.3.26 NAME 'dcmuiElasticsearchIsD
+ efault' DESC 'Indicates if the URL is the default one' EQUALITY booleanMatch 
+ SYNTAX 1.3.6.1.4.1.1466.115.121.1.7 SINGLE-VALUE )
+olcAttributeTypes: {27}( 1.2.40.0.13.1.15.111.3.27 NAME 'dcmuiElasticsearchIns
+ talled' DESC 'Indicates if the URL is installed' EQUALITY booleanMatch SYNTAX
+  1.3.6.1.4.1.1466.115.121.1.7 SINGLE-VALUE )
+olcAttributeTypes: {28}( 1.2.40.0.13.1.15.111.3.28 NAME 'dcmuiDeviceURLName' D
+ ESC 'NO LONGER USED - MAY BE DECLARED OBSOLETE IN FUTURE VERSION' EQUALITY ca
+ seExactMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {29}( 1.2.40.0.13.1.15.111.3.29 NAME 'dcmuiDeviceURL' DESC 
+ 'NO LONGER USED - MAY BE DECLARED OBSOLETE IN FUTURE VERSION' EQUALITY caseEx
+ actMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {30}( 1.2.40.0.13.1.15.111.3.30 NAME 'dcmuiDeviceURLDescrip
+ tion' DESC 'NO LONGER USED - MAY BE DECLARED OBSOLETE IN FUTURE VERSION' EQUA
+ LITY caseExactMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {31}( 1.2.40.0.13.1.15.111.3.31 NAME 'dcmuiDeviceURLInstall
+ ed' DESC 'NO LONGER USED - MAY BE DECLARED OBSOLETE IN FUTURE VERSION' EQUALI
+ TY booleanMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.7 SINGLE-VALUE )
+olcAttributeTypes: {32}( 1.2.40.0.13.1.15.111.3.32 NAME 'dcmuiDeviceClusterNam
+ e' DESC 'Cluster Name' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.1466.115.12
+ 1.1.15 SINGLE-VALUE )
+olcAttributeTypes: {33}( 1.2.40.0.13.1.15.111.3.33 NAME 'dcmuiDeviceClusterDes
+ cription' DESC 'Cluster Description' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4
+ .1.1466.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {34}( 1.2.40.0.13.1.15.111.3.34 NAME 'dcmuiClusterWebApp' D
+ ESC 'Cluster Web App' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.1466.115.121
+ .1.15 SINGLE-VALUE )
+olcAttributeTypes: {35}( 1.2.40.0.13.1.15.111.3.35 NAME 'dcmuiDeviceClusterDev
+ ices' DESC 'Devices in Cluster' EQUALITY caseExactMatch SUBSTR caseExactSubst
+ ringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: {36}( 1.2.40.0.13.1.15.111.3.36 NAME 'dcmuiDeviceClusterIns
+ talled' DESC 'Indicates if the Cluster is installed' EQUALITY booleanMatch SY
+ NTAX 1.3.6.1.4.1.1466.115.121.1.7 SINGLE-VALUE )
+olcAttributeTypes: {37}( 1.2.40.0.13.1.15.111.3.37 NAME 'dcmuiCompareSideName'
+  DESC 'Compare Side Name' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.1466.115
+ .121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {38}( 1.2.40.0.13.1.15.111.3.38 NAME 'dcmuiCompareSideDescr
+ iption' DESC 'Compare Side Description' EQUALITY caseExactMatch SYNTAX 1.3.6.
+ 1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {39}( 1.2.40.0.13.1.15.111.3.76 NAME 'dcmuiCompareSideOrder
+ ' DESC 'Compare Side Order' EQUALITY caseExactMatch SUBSTR caseExactSubstring
+ sMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: {40}( 1.2.40.0.13.1.15.111.3.43 NAME 'dcmuiCompareSideQueue
+ Name' DESC 'Queue Name' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.1466.115.1
+ 21.1.15 SINGLE-VALUE )
+olcAttributeTypes: {41}( 1.2.40.0.13.1.15.111.3.39 NAME 'dcmuiCompareSideClust
+ er' DESC 'Compare Side Cluster' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.14
+ 66.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {42}( 1.2.40.0.13.1.15.111.3.40 NAME 'dcmuiCompareSideElast
+ icsearch' DESC 'Compare Side Elasticsearch' EQUALITY caseExactMatch SYNTAX 1.
+ 3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {43}( 1.2.40.0.13.1.15.111.3.41 NAME 'dcmuiCompareSideInsta
+ lled' DESC 'Indicates if the Compare Side is installed' EQUALITY booleanMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.7 SINGLE-VALUE )
+olcAttributeTypes: {44}( 1.2.40.0.13.1.15.111.3.45 NAME 'dcmuiFilterTemplateGr
+ oupName' DESC 'Filter group name' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.
+ 1466.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {45}( 1.2.40.0.13.1.15.111.3.46 NAME 'dcmuiFilterTemplateID
+ ' DESC 'Filter group Id' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.1466.115.
+ 121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {46}( 1.2.40.0.13.1.15.111.3.47 NAME 'dcmuiFilterTemplateDe
+ scription' DESC 'Filter group description' EQUALITY caseExactMatch SYNTAX 1.3
+ .6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {47}( 1.2.40.0.13.1.15.111.3.48 NAME 'dcmuiFilterTemplateFi
+ lters' DESC 'Filters key=value' EQUALITY caseExactIA5Match SYNTAX 1.3.6.1.4.1
+ .1466.115.121.1.26 )
+olcAttributeTypes: {48}( 1.2.40.0.13.1.15.111.3.49 NAME 'dcmuiFilterTemplateDe
+ fault' DESC 'Indicates if the template is used as default' EQUALITY booleanMa
+ tch SYNTAX 1.3.6.1.4.1.1466.115.121.1.7 SINGLE-VALUE )
+olcAttributeTypes: {49}( 1.2.40.0.13.1.15.111.3.50 NAME 'dcmuiFilterTemplateUs
+ ername' DESC 'Username of the user that can use this template' EQUALITY caseE
+ xactMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {50}( 1.2.40.0.13.1.15.111.3.51 NAME 'dcmuiFilterTemplateRo
+ le' DESC 'Role of the user that can use this template' EQUALITY caseExactMatc
+ h SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {51}( 1.2.40.0.13.1.15.111.3.53 NAME 'dcmuiAetListName' DES
+ C 'Aet List Name' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.1
+ 5 SINGLE-VALUE )
+olcAttributeTypes: {52}( 1.2.40.0.13.1.15.111.3.54 NAME 'dcmuiAetListDescripti
+ on' DESC 'Aet List Description' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.14
+ 66.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {53}( 1.2.40.0.13.1.15.111.3.55 NAME 'dcmuiMode' DESC 'Aet 
+ List Mode internal or external' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.14
+ 66.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {54}( 1.2.40.0.13.1.15.111.3.56 NAME 'dcmuiAets' DESC 'Aet 
+ Selected List' EQUALITY caseExactIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.2
+ 6)
+olcAttributeTypes: {55}( 1.2.40.0.13.1.15.111.3.57 NAME 'dicomuiDockerContaine
+ r' DESC 'Names of the archive docker containers used in the hardware page' EQ
+ UALITY caseExactIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 )
+olcAttributeTypes: {56}( 1.2.40.0.13.1.15.111.3.58 NAME 'dcmuiShowStarBlock' D
+ ESC 'Show Star Block - tasks without defined deviceName' EQUALITY booleanMatc
+ h SYNTAX 1.3.6.1.4.1.1466.115.121.1.7 SINGLE-VALUE )
+olcAttributeTypes: {57}( 1.2.40.0.13.1.15.111.3.59 NAME 'dcmuiModalities' DESC
+  'UI Modalities' EQUALITY caseExactMatch SUBSTR caseExactSubstringsMatch SYNT
+ AX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: {58}( 1.2.40.0.13.1.15.111.3.60 NAME 'dcmuiWidgetAets' DESC
+  'Widget AETs' EQUALITY caseExactMatch SUBSTR caseExactSubstringsMatch SYNTAX
+  1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: {59}( 1.2.40.0.13.1.15.111.3.61 NAME 'dcmuiAuditEnterpriseS
+ iteID' DESC 'Audit Enterprise SiteID' EQUALITY caseExactMatch SYNTAX 1.3.6.1.
+ 4.1.1466.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {60}( 1.2.40.0.13.1.15.111.3.62 NAME 'dcmuiDefaultWidgetAet
+ s' DESC 'Default Widget AETs' EQUALITY caseExactMatch SUBSTR caseExactSubstri
+ ngsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: {61}( 1.2.40.0.13.1.15.111.3.63 NAME 'dcmuiXDSInterfaceURL'
+  DESC 'XDS Interface URL' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.1466.115
+ .121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {62}( 1.2.40.0.13.1.15.111.3.64 NAME 'dcmuiWebAppListName' 
+   DESC 'Web Apps List Name'   EQUALITY caseExactMatch   SYNTAX 1.3.6.1.4.1.14
+ 66.115.121.1.15   SINGLE-VALUE )
+olcAttributeTypes: {63}( 1.2.40.0.13.1.15.111.3.65 NAME 'dcmuiWebAppListDescri
+ ption' DESC 'WebApp List Description' EQUALITY caseExactMatch SYNTAX 1.3.6.1.
+ 4.1.1466.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {64}( 1.2.40.0.13.1.15.111.3.66 NAME 'dcmuiWebApps'   DESC 
+ 'Web App Selected List'   EQUALITY caseExactIA5Match   SYNTAX 1.3.6.1.4.1.146
+ 6.115.121.1.26 )
+olcAttributeTypes: {65}( 1.2.40.0.13.1.15.111.3.67  NAME 'dcmAcceptedUserName'
+  DESC 'Accpeted Username' EQUALITY caseExactIA5Match SYNTAX 1.3.6.1.4.1.1466.
+ 115.121.1.26 )
+olcAttributeTypes: {66}( 1.2.40.0.13.1.15.111.3.68 NAME 'dcmLanguages' DESC 'A
+ vailable languages' EQUALITY caseExactMatch SUBSTR caseExactSubstringsMatch S
+ YNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: {67}( 1.2.40.0.13.1.15.111.3.69 NAME 'dcmDefaultLanguage' D
+ ESC 'Default Language' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.1466.115.12
+ 1.1.15 SINGLE-VALUE )
+olcAttributeTypes: {68}( 1.2.40.0.13.1.15.111.3.70 NAME 'dcmuiLanguageConfigNa
+ me' DESC 'Language Config Name' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.14
+ 66.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {69}( 1.2.40.0.13.1.15.111.3.71 NAME 'dcmuiLanguageProfileN
+ ame' DESC 'Language Profile Name' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.
+ 1466.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {70}( 1.2.40.0.13.1.15.111.3.72 NAME 'dcmuiLanguageProfileR
+ ole' DESC 'Profile Role' EQUALITY caseExactIA5Match SYNTAX 1.3.6.1.4.1.1466.1
+ 15.121.1.26 )
+olcAttributeTypes: {71}( 1.2.40.0.13.1.15.111.3.73 NAME 'dcmuiLanguageProfileU
+ sername' DESC 'Username for language profile' EQUALITY caseExactMatch SYNTAX 
+ 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {72}( 1.2.40.0.13.1.15.111.3.74 NAME 'dcmuiBackgroundURL' D
+ ESC 'Background URL' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.1466.115.121.
+ 1.15 SINGLE-VALUE )
+olcAttributeTypes: {73}( 1.2.40.0.13.1.15.111.3.75 NAME 'dcmuiLogoURL' DESC 'L
+ ogo URL' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-
+ VALUE )
+olcAttributeTypes: {74}( 1.2.40.0.13.1.15.111.3.81 NAME 'dcmuiAboutInfo' DESC 
+ 'About Info' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SIN
+ GLE-VALUE )
+olcAttributeTypes: {75}( 1.2.40.0.13.1.15.111.3.77 NAME 'dcmuiTemplateName' DE
+ SC 'Template Name' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.
+ 15 SINGLE-VALUE )
+olcAttributeTypes: {76}( 1.2.40.0.13.1.15.111.3.78 NAME 'dcmuiDialog' DESC 'Cr
+ eate Dialog' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SIN
+ GLE-VALUE )
+olcAttributeTypes: {77}( 1.2.40.0.13.1.15.111.3.79 NAME 'dcmuiDateTimeFormat' 
+ DESC 'Format Date Time' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.1466.115.1
+ 21.1.15 SINGLE-VALUE )
+olcAttributeTypes: {78}( 1.2.40.0.13.1.15.111.3.80 NAME 'dcmuiPersonNameFormat
+ ' DESC 'Format Date Time' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.1466.115
+ .121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {79}( 1.2.40.0.13.1.15.111.3.82 NAME 'dcmuiHideClock'   DES
+ C 'Hide Clock'   EQUALITY booleanMatch   SYNTAX 1.3.6.1.4.1.1466.115.121.1.7 
+   SINGLE-VALUE )
+olcAttributeTypes: {80}( 1.2.40.0.13.1.15.111.3.83 NAME 'dcmuiPageTitle' DESC 
+ 'Page Title' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SIN
+ GLE-VALUE )
+olcAttributeTypes: {81}( 1.2.40.0.13.1.15.111.3.84 NAME 'dcmuiMWLWorklistLabel
+ ' DESC 'Selectable values for MWL Worklist Labels.' EQUALITY caseExactMatch S
+ YNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: {82}( 1.2.40.0.13.1.15.111.3.85 NAME 'dcmuiHideOtherPatient
+ IDs' DESC 'Indicates if other patient identifiers of patient record present i
+ n Other Patient IDs Sequence (0010,1002) shall be hidden. By default, all pat
+ ient identifiers of patient record are displayed separated by comma.' EQUALIT
+ Y booleanMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.7 SINGLE-VALUE)
+olcAttributeTypes: {83}( 1.2.40.0.13.1.15.111.3.86 NAME 'dcmuiInstitutionName'
+   DESC 'Selectable Institution names in UI Navigation Filter.'  EQUALITY case
+ IgnoreMatch  SUBSTR caseIgnoreSubstringsMatch  SYNTAX 1.3.6.1.4.1.1466.115.12
+ 1.1.15 )
+olcAttributeTypes: {84}( 1.2.40.0.13.1.15.111.3.87 NAME 'dcmuiInstitutionNameF
+ ilterType' DESC 'Selectable mode which will define from where to get the Inst
+ itutionNames' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SI
+ NGLE-VALUE )
+olcAttributeTypes: {85}( 1.2.40.0.13.1.15.111.3.88 NAME 'dcmuiTenantConfigName
+ ' DESC 'Tenant ui config name' EQUALITY caseExactMatch SYNTAX 1.3.6.1.4.1.146
+ 6.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {86}( 1.2.40.0.13.1.15.111.3.89 NAME 'dcmuiTenantConfigDesc
+ ription' DESC 'Tenant ui config name' EQUALITY caseExactMatch SYNTAX 1.3.6.1.
+ 4.1.1466.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {87}( 1.2.40.0.13.1.15.111.3.90 NAME 'dcmuiWebAppLabels'   
+ DESC 'Web App labels'   EQUALITY caseExactMatch   SUBSTR caseExactSubstringsM
+ atch   SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: {88}( 1.2.40.0.13.1.15.111.3.91 NAME 'dcmuiApplicationEntit
+ ies'   DESC 'Application Entities'   EQUALITY caseExactMatch   SUBSTR caseExa
+ ctSubstringsMatch   SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: {89}( 1.2.40.0.13.1.15.111.3.92 NAME 'dcmuiExporterDescript
+ ions'   DESC 'Exporter Descriptions'   EQUALITY caseExactMatch   SUBSTR caseE
+ xactSubstringsMatch   SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: {90}( 1.2.40.0.13.1.15.111.3.93 NAME 'dcmuiStorageDescripto
+ rs'   DESC 'Storage Descriptions'   EQUALITY caseExactMatch   SUBSTR caseExac
+ tSubstringsMatch   SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: {91}( 1.2.40.0.13.1.15.111.3.94 NAME 'dcmuiQueues'   DESC '
+ Queues'   EQUALITY caseExactMatch   SUBSTR caseExactSubstringsMatch   SYNTAX 
+ 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: {92}( 1.2.40.0.13.1.15.111.3.95 NAME 'dcmuiGrafanaURL'   DE
+ SC 'Grafan URL'   EQUALITY caseExactMatch   SUBSTR caseExactSubstringsMatch  
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: {93}( 1.2.40.0.13.1.15.111.3.96 NAME 'dcmuiPrometheusWebApp
+ '   DESC 'Promehteus Web App'   EQUALITY caseExactMatch   SUBSTR caseExactSub
+ stringsMatch   SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: {94}( 1.2.40.0.13.1.15.111.3.97 NAME 'dcmuiStoreAccessContr
+ olID'   DESC 'Store Access Control ID'   EQUALITY caseExactMatch   SUBSTR cas
+ eExactSubstringsMatch   SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: {95}( 1.2.40.0.13.1.15.111.3.98 NAME 'dcmuiUWLWebAppLabels'
+    DESC 'UWL Web App labels'   EQUALITY caseExactMatch   SUBSTR caseExactSubs
+ tringsMatch   SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: {96}( 1.2.40.0.13.1.15.111.3.99 NAME 'dcmuiIssuerOfPatientI
+ DSequence'  DESC 'Issuer of Patient ID Sequence'  EQUALITY caseIgnoreMatch  S
+ UBSTR caseIgnoreSubstringsMatch  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: {97}( 1.2.40.0.13.1.15.111.3.100 NAME 'dcmuiIssuerOfAccessi
+ onNumberSequence'  DESC 'Issuer of Accession Number Sequence'  EQUALITY caseI
+ gnoreMatch  SUBSTR caseIgnoreSubstringsMatch  SYNTAX 1.3.6.1.4.1.1466.115.121
+ .1.15 )
+olcAttributeTypes: {98}( 1.2.40.0.13.1.15.111.3.101 NAME 'dcmuiIssuerOfAdmissi
+ onIDSequence'  DESC 'Issuer of Admission ID Sequence'  EQUALITY caseIgnoreMat
+ ch  SUBSTR caseIgnoreSubstringsMatch  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcObjectClasses: {0}( 1.2.40.0.13.1.15.111.4.1 NAME 'dcmuiConfig' DESC 'Archi
+ ve UI Configuration' SUP top STRUCTURAL MUST (   dcmuiConfigName ) MAY (   dc
+ muiModalities $   dcmuiDefaultWidgetAets $   dcmuiXDSInterfaceURL $   dcmuiBa
+ ckgroundURL $   dcmuiLogoURL $   dcmuiAboutInfo $   dcmuiDateTimeFormat $   d
+ cmuiHideClock $   dcmuiHideOtherPatientIDs $   dcmuiPageTitle $   dcmuiPerson
+ NameFormat $   dcmDefaultLanguage $   dcmLanguages $   dcmuiWidgetAets $   dc
+ muiInstitutionNameFilterType $   dcmuiStoreAccessControlID $   dcmuiInstituti
+ onName $   dcmuiIssuerOfPatientIDSequence $   dcmuiIssuerOfAccessionNumberSeq
+ uence $   dcmuiIssuerOfAdmissionIDSequence $   dcmuiMWLWorklistLabel ) )
+olcObjectClasses: {1}( 1.2.40.0.13.1.15.111.4.2 NAME 'dcmuiPermission' DESC 'P
+ ermission for UI Action' SUP top STRUCTURAL MUST (   dcmuiPermissionName $   
+ dcmuiAction ) MAY (   dcmuiActionParam $   dcmAcceptedUserRole ) )
+olcObjectClasses: {2}( 1.2.40.0.13.1.15.111.4.3 NAME 'dcmuiDiffConfig' DESC 'U
+ I Configuration for comparing studies in two archives' SUP top STRUCTURAL MUS
+ T (   dcmuiDiffConfigName ) MAY (   dcmuiDiffCallingAET $   dcmuiDiffPrimaryC
+ FindSCP $   dcmuiDiffPrimaryCMoveSCP $   dcmuiDiffPrimaryCStoreSCP $   dcmuiD
+ iffSecondaryCFindSCP $   dcmuiDiffSecondaryCMoveSCP $   dcmuiDiffSecondaryCSt
+ oreSCP ) )
+olcObjectClasses: {3}( 1.2.40.0.13.1.15.111.4.4 NAME 'dcmuiDiffCriteria' DESC 
+ 'Criteria for comparing studies in two archives' SUP top STRUCTURAL MUST (   
+ dcmuiDiffCriteriaTitle ) MAY (   dicomDescription $   dcmuiDiffCriteriaNumber
+  $   dcmuiDiffIncludeMissing $   dcmAttributeSetID $   dcmuiDiffAction $   dc
+ muiDiffGroupButton ) )
+olcObjectClasses: {4}( 1.2.40.0.13.1.15.111.4.5 NAME 'dcmuiDashboardConfig' DE
+ SC 'UI Dashboard Config' SUP top STRUCTURAL MUST (   dcmuiDashboardConfigName
+  ) MAY (   dcmuiQueueName $   dcmuiExportName $   dcmuiShowStarBlock $   dcmu
+ iCountWebApp $   dcmAcceptedUserRole $   dicomuiDeviceName $   dicomuiIgnoreP
+ arams $   dcmuiGrafanaURL $   dcmuiPrometheusWebApp $   dicomuiDockerContaine
+ r $   dcmuiCompareSideName ) )
+olcObjectClasses: {5}( 1.2.40.0.13.1.15.111.4.6 NAME 'dcmuiElasticsearchConfig
+ ' DESC 'UI Configuration for Elasticsearch' SUP top STRUCTURAL MUST (   dcmui
+ ElasticsearchConfigName ) MAY (   dcmuiElasticsearchWebApp ) )
+olcObjectClasses: {6}( 1.2.40.0.13.1.15.111.4.7 NAME 'dcmuiElasticsearchURLObj
+ ects' DESC 'Elasticsearch URL' SUP top STRUCTURAL MUST (   dcmuiElasticsearch
+ URLName $   dcmuiElasticsearchWebApp ) MAY (   dcmuiElasticsearchIsDefault $ 
+   dcmuiAuditEnterpriseSiteID $   dcmuiElasticsearchInstalled ) )
+olcObjectClasses: {7}( 1.2.40.0.13.1.15.111.4.8 NAME 'dcmuiDeviceURLObject' DE
+ SC 'NO LONGER USED - MAY BE DECLARED OBSOLETE IN FUTURE VERSION' SUP top STRU
+ CTURAL MUST (   dcmuiDeviceURLName $   dcmuiDeviceURL ) MAY (   dcmuiDeviceUR
+ LDescription $   dcmuiDeviceURLInstalled ) )
+olcObjectClasses: {8}( 1.2.40.0.13.1.15.111.4.9 NAME 'dcmuiDeviceClusterObject
+ ' DESC 'Device Cluster' SUP top STRUCTURAL MUST (   dcmuiDeviceClusterName  )
+  MAY (   dcmuiDeviceClusterDescription $   dcmuiClusterWebApp $   dcmuiDevice
+ ClusterDevices $   dcmuiDeviceClusterInstalled ) )
+olcObjectClasses: {9}( 1.2.40.0.13.1.15.111.4.10 NAME 'dcmuiCompareSideObjects
+ ' DESC 'Dashboard Side Compare' SUP top STRUCTURAL MUST (   dcmuiCompareSideN
+ ame $   dcmuiCompareSideElasticsearch $   dcmuiCompareSideCluster ) MAY (   d
+ cmuiCompareSideInstalled $   dcmuiCompareSideQueueName $   dcmuiCompareSideOr
+ der $   dcmuiCompareSideDescription ) )
+olcObjectClasses: {10}( 1.2.40.0.13.1.15.111.4.11 NAME 'dcmuiFilterTemplateObj
+ ect' DESC 'Filter template' SUP top STRUCTURAL MUST (   dcmuiFilterTemplateGr
+ oupName $   dcmuiFilterTemplateID $   dcmuiFilterTemplateFilters ) MAY (   dc
+ muiFilterTemplateDescription $   dcmuiFilterTemplateUsername $   dcmuiFilterT
+ emplateRole $   dcmuiFilterTemplateDefault ) )
+olcObjectClasses: {11}( 1.2.40.0.13.1.15.111.4.12 NAME 'dcmuiAetConfig' DESC '
+ Filter template' SUP top STRUCTURAL MUST (   dcmuiAetListName $   dcmuiAets )
+  MAY (   dcmuiAetListDescription $   dcmuiMode $   dcmAcceptedUserRole ) )
+olcObjectClasses: {12}( 1.2.40.0.13.1.15.111.4.13 NAME 'dcmuiWebAppConfig' DES
+ C 'Web App List' SUP top STRUCTURAL MUST (   dcmuiWebAppListName $   dcmuiMod
+ e $   dcmuiWebApps ) MAY (   dcmuiWebAppListDescription $   dcmAcceptedUserNa
+ me $   dcmAcceptedUserRole ) )
+olcObjectClasses: {13}( 1.2.40.0.13.1.15.111.4.14 NAME 'dcmuiLanguageConfig' D
+ ESC 'Language Config' SUP top STRUCTURAL MUST (   dcmuiLanguageConfigName $  
+  dcmLanguages ) )
+olcObjectClasses: {14}( 1.2.40.0.13.1.15.111.4.15 NAME 'dcmuiLanguageProfileOb
+ jects' DESC 'UI Elasticsearch URL' SUP top STRUCTURAL MUST (   dcmuiLanguageP
+ rofileName $   dcmDefaultLanguage ) MAY (   dcmuiLanguageProfileRole $   dcmu
+ iLanguageProfileUsername ) )
+olcObjectClasses: {15}( 1.2.40.0.13.1.15.111.4.16 NAME 'dcmuiCreateDialogTempl
+ ate' DESC 'Template Name' SUP top STRUCTURAL MUST (   dcmuiTemplateName $   d
+ cmTag ) MAY (   dicomDescription $   dcmuiDialog ) )
+olcObjectClasses: {16}( 1.2.40.0.13.1.15.111.4.17 NAME 'dcmuiTenantConfig' DES
+ C 'Ui Config Tenant Config' SUP top STRUCTURAL MUST (   dcmuiTenantConfigName
+  $   dcmAcceptedUserRole ) MAY (   dcmuiTenantConfigDescription $   dcmuiWebA
+ ppLabels $   dcmuiUWLWebAppLabels $   dcmuiApplicationEntities $   dcmuiExpor
+ terDescriptions $   dcmuiStorageDescriptors $   dcmuiStoreAccessControlID $  
+  dcmuiQueues ) )
+structuralObjectClass: olcSchemaConfig
+entryUUID: 9750e217-a232-4df5-bc8c-514351734bf4
+creatorsName: cn=admin,cn=config
+createTimestamp: 20250606010756Z
+entryCSN: 20250606010756.633579Z#000000#000#000000
+modifiersName: cn=admin,cn=config
+modifyTimestamp: 20250606010756Z

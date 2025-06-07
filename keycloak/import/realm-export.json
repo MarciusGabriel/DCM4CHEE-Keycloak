@@ -1,0 +1,57 @@
+{
+  "realm": "dcm4che",
+  "enabled": true,
+  "users": [
+    {
+      "username": "admin-dcm4che",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Admin",
+      "lastName": "DCM4CHE",
+      "email": "admin@dcm4che.local",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "changeit",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "offline_access",
+        "uma_authorization"
+      ],
+      "clientRoles": {
+        "realm-management": [
+          "manage-users",
+          "view-users",
+          "manage-realm",
+          "query-users",
+          "view-realm",
+          "manage-clients",
+          "impersonation"
+        ]
+      }
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "dcm4chee-arc-ui",
+      "name": "DCM4CHEE Archive UI",
+      "enabled": true,
+      "publicClient": true,
+      "redirectUris": [
+        "/dcm4chee-arc/ui2/*",
+        "https://localhost:8443/dcm4chee-arc/ui2/*"
+      ],
+      "webOrigins": [
+        "+"
+      ],
+      "baseUrl": "/dcm4chee-arc/ui2/",
+      "adminUrl": "https://localhost:8443/dcm4chee-arc/ui2/",
+      "rootUrl": "https://localhost:8443/dcm4chee-arc/ui2/",
+      "protocol": "openid-connect",
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true
+    }
+  ]
+}

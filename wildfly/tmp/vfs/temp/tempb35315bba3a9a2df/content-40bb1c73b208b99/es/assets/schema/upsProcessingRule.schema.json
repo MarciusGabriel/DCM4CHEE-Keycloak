@@ -1,0 +1,166 @@
+{
+  "title": "Regla de procesamiento UPS",
+  "description": "Procesar elementos de trabajo coincidentes en el pool de trabajo unificado.",
+  "type": "object",
+  "required": [
+    "dcmUPSProcessingRuleID",
+    "dcmUPSInputReadinessState",
+    "dcmURI",
+    "dicomAETitle",
+    "dcmUPSPerformedWorkitemCode",
+    "dcmUPSPerformedStationNameCode",
+    "dcmRetryDelay",
+    "dcmRetryDelayMultiplier",
+    "dcmMaxRetries",
+    "dcmMaxThreads"
+  ],
+  "properties": {
+    "dcmUPSProcessingRuleID": {
+      "title": "Regla de procesamiento UPS ID",
+      "description": "ID de la regla de procesamiento UPS.",
+      "type": "string"
+    },
+    "dicomAETitle": {
+      "title": "Título de la entidad de aplicación (AE)",
+      "description": "Título de la entidad de aplicación (AE).",
+      "type": "string",
+      "format": "dcmArchiveAETitle"
+    },
+    "dcmURI": {
+      "title": "URI del procesador UPS",
+      "description": "Identifica el procesador UPS para procesar los elementos de trabajo coincidentes.",
+      "type": "string"
+    },
+    "dcmProperty": {
+      "title": "Propiedad de procesamiento",
+      "description": "Propiedad dependiente del procesador UPS en formato <name>=<value>",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "dcmSchedule": {
+      "title": "Horario de procesamiento",
+      "description": "Retrasa el procesamiento a los periodos de tiempo especificados. Si no se especifica un Horario de Procesamiento, procesa los elementos de trabajo se procesan a la hora de inicio de la etapa de procedimiento programada (0040,4005). Formato: 'hour=[0-23] díaDeLaSemana=[0-6]' (0=domingo).",
+      "type": "array",
+      "items": { "type": "string" },
+      "format": "dcmSchedule"
+    },
+    "dcmMaxThreads": {
+      "title": "Número máximo de subprocesos",
+      "description": "Número máximo de subprocesos utilizados para procesar los elementos de trabajo correspondientes.",
+      "type": "integer",
+      "minimum": 1,
+      "default": 1
+    },
+    "dcmUPSInputReadinessState": {
+      "title": "Estado de disponibilidad de entrada",
+      "description": "Procesar elementos de trabajo con el mismo estado de disponibilidad de entrada (0040,4041).",
+      "type": "string",
+      "default": "READY",
+      "enum": [
+        "INCOMPLETE",
+        "UNAVAILABLE",
+        "READY"
+      ]
+    },
+    "dcmUPSPriority": {
+      "title": "Prioridad",
+      "description": "Procesa los elementos de trabajo que coincidan con la prioridad del paso de procedimiento programado (0074,1200). Si no existe, procesa los elementos de trabajo de cualquier prioridad, pero ordena el procesamiento según su prioridad.",
+      "type": "string",
+      "enum": [
+        "HIGH",
+        "MEDIUM",
+        "LOW"
+      ]
+    },
+    "dcmUPSLabel": {
+      "title": "Etiqueta de paso de procedimiento",
+      "description": "Procesar elementos de trabajo con la etiqueta de paso de procedimiento correspondiente (0074,1204). Si no existe, procesa los elementos de trabajo con cualquier etiqueta de paso de procedimiento.",
+      "type": "string"
+    },
+    "dcmUPSWorklistLabel": {
+      "title": "Etiqueta de Lista de Trabajo",
+      "description": "Procesar elementos de trabajo con etiqueta de lista de trabajo (0074,1202). Si no existe, procesa los elementos de trabajo con cualquier etiqueta.",
+      "type": "string"
+    },
+    "dcmUPSScheduledWorkitemCode": {
+      "title": "Código de Elemento de Trabajo Programado",
+      "description": "Procesar los Elementos de Trabajo con Código coincidente en la Secuencia de Código de Elemento de Trabajo Programado (0040,4018) en formato (CV, CSD, \"CM\"). Si no existe, procesa los elementos de trabajo con cualquier código de elemento de trabajo programado.",
+      "type": "string"
+    },
+    "dcmUPSScheduledStationNameCode": {
+      "title": "Código de nombre de estación programada",
+      "description": "Procesa los elementos de trabajo con un código coincidente en la secuencia de códigos de nombre de estación programada (0040,4025) en formato (CV, CSD, \"CM\"). Si no existe, procesa los elementos de trabajo con cualquier código de nombre de estación programada.",
+      "type": "string"
+    },
+    "dcmUPSScheduledStationClassCode": {
+      "title": "Código de clase de estación programada",
+      "description": "Procesar los elementos de trabajo con código coincidente en la secuencia de códigos de clase de nombre de estación programada (0040,4026) en formato (CV, CSD, \"CM\"). Si no existe, procesa los elementos de trabajo con cualquier código de clase de estación programada.",
+      "type": "string"
+    },
+    "dcmUPSScheduledStationLocationCode": {
+      "title": "Código de ubicación geográfica de estación programada",
+      "description": "Procesar elementos de trabajo con código coincidente en la secuencia de clases de ubicación geográfica de estación programada (0040,4027) en formato (CV, CSD, \"CM\"). Si no existe, procesa los elementos de trabajo con cualquier código de ubicación geográfica de estación programada.",
+      "type": "string"
+    },
+    "dcmUPSPerformedWorkitemCode": {
+      "title": "Código del elemento de trabajo realizado",
+      "description": "Secuencia del código del elemento de trabajo realizado (0040,4019) en el UPS procesado en formato (CV, CSD, \"CM\").",
+      "type": "string",
+      "default": "(NO_WORKITEM_CODE, 99DCM4CHEE, \"Workitem Code\")"
+    },
+    "dcmUPSPerformedStationNameCode": {
+      "title": "Código de Nombre de Estación Realizada",
+      "description": "Elemento de la Secuencia de Código de Nombre de Estación Realizada (0040,4028) en SAI procesado en formato (CV, CSD, \"CM\").",
+      "type": "string",
+      "default": "(NO_STATION_NAME, 99DCM4CHEE, \"No Station Name specified\")"
+    },
+    "dcmUPSIgnoreDiscontinuationReasonCode": {
+      "title": "Ignorar código de motivo de interrupción",
+      "description": "Especifica el código de motivo de interrupción en formato (CV, CSD, \"CM\") para ignorarlo y cambiar el estado de la UPS a COMPLETADA - en lugar de CANCELADA.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dcmUPSRescheduleDiscontinuationReasonCode": {
+      "title": "Reprogramar código de motivo de interrupción",
+      "description": "Especifica el código de motivo de interrupción en formato (CV, CSD, \"CM\") para reprogramar la UPS cancelada. Si no existe, las UPS canceladas con cualquier código de motivo de cancelación se reprogramarán de acuerdo con el número máximo de reprogramaciones especificado.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dcmUPSTemplateID": {
+      "title": "Crear UPS al cancelar",
+      "description": "Especifica el UID de instancia de elemento de trabajo de plantilla de UPS para crear una UPS si falla el procesamiento y ya no está programado el reintento. Si no existe, no se creará ninguna UPS en caso de fallo.",
+      "type": "string"
+    },
+    "dcmMaxRetries": {
+      "title": "Número máximo de reprogramaciones",
+      "description": "Número máximo de reprogramaciones de un elemento de trabajo cuyo procesamiento ha fallado.",
+      "type": "integer",
+      "minimum": 0,
+      "default": 0
+    },
+    "dcmRetryDelay": {
+      "title": "Retraso de reprogramación",
+      "description": "Retraso para reprogramar un elemento de trabajo cuyo procesamiento ha fallado en formato de duración ISO-8601 PnDTnHnMn.nS.",
+      "type": "string",
+      "default": "PT1M",
+      "format": "dcmDuration"
+    },
+    "dcmMaxRetryDelay": {
+      "title": "Retraso máximo de reprogramación",
+      "description": "Retraso máximo para reprogramar un elemento de trabajo cuyo procesamiento falló en formato de duración ISO-8601 PnDTnHnMn.nS. Infinito si no existe.",
+      "type": "string",
+      "format": "dcmDuration"
+    },
+    "dcmRetryDelayMultiplier": {
+      "title": "Multiplicador de la demora de reprogramación",
+      "description": "Multiplicador en % que tendrá efecto sobre la demora de reprogramación con la demora máxima de reprogramación que debe tenerse en cuenta.",
+      "type": "integer",
+      "minimum": 100,
+      "default": 100
+    }
+  }
+}

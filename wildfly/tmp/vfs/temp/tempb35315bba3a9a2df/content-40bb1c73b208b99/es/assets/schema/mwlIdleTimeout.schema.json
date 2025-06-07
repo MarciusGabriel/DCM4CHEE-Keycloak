@@ -1,0 +1,49 @@
+{
+  "title": "Tiempo de inactividad MWL",
+  "description": "Tiempo de inactividad MWL.",
+  "type": "object",
+  "required": [
+    "cn",
+    "dicomAETitle",
+    "dcmMWLStatusOnIdle",
+    "dcmDuration"
+  ],
+  "properties": {
+    "cn": {
+      "title": "Nombre",
+      "description": "Nombre arbitrario/significativo del MWL Tiempo de espera inactivo.",
+      "type": "string"
+    },
+    "dicomAETitle": {
+      "title": "Título AE SCP MWL",
+      "description": "Título AE del SCP MWL en el que se aplicará el tiempo de espera inactivo MWL.",
+      "type": "string",
+      "format": "dcmArchiveAETitle"
+    },
+    "dcmAETitle": {
+      "title": "Título AE de estación programada",
+      "description": "Título(s) AE de estación programada de pasos de procedimiento programados para los que se aplicará el tiempo de espera de inactividad de MWL. Si no se especifica ninguno, el Tiempo de Espera MWL se aplica a todos los Pasos de Procedimiento Programados proporcionados por el SCP MWL.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "format": "dcmAETitle"
+    },
+    "dcmMWLStatusOnIdle": {
+      "title": "Estado MWL en Espera",
+      "description": "Cambia el estado de los Pasos de Procedimiento Programados en espera al valor especificado.",
+      "type": "string",
+      "enum":[
+        "CANCELED",
+        "DISCONTINUED",
+        "COMPLETED"
+      ]
+    },
+    "dcmDuration": {
+      "title": "Tiempo de espera de inactividad",
+      "description": "Tiempo de espera tras el cual el estado de los pasos de procedimiento programados coincidentes se cambia al estado final especificado.",
+      "type": "string",
+      "format": "dcmDuration"
+    }
+  }
+}

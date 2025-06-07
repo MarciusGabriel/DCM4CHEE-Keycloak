@@ -1,0 +1,72 @@
+{
+  "title": "Cliente Keycloak",
+  "description": "Cliente Keycloak",
+  "type": "object",
+  "required": [
+    "dcmKeycloakClientID",
+    "dcmURI",
+    "dcmKeycloakRealm",
+    "dcmKeycloakGrantType",
+    "dcmTLSAllowAnyHostname",
+    "dcmTLSDisableTrustManager"
+  ],
+  "properties": {
+    "dcmKeycloakClientID": {
+      "title": "Keycloak Client ID",
+      "description": "ID del cliente utilizado en las solicitudes de fichas.",
+      "type": "string",
+      "use": [
+        "$.dcmWebApp[*].dcmKeycloakClientID",
+        "$.dicomNetworkAE[*].dcmNetworkAE.dcmArchiveNetworkAE.dcmUserIdentityNegotiationKeycloakClientID",
+        "$.dcmDevice.dcmArchiveDevice.dcmUserIdentityNegotiationKeycloakClientID"
+      ]
+    },
+    "dcmURI": {
+      "title": "URL del Servidor",
+      "description": "La URL base del servidor Keycloak.",
+      "type": "string"
+    },
+    "dcmKeycloakRealm": {
+      "title": "Dominio Keycloak",
+      "description": "Nombre del dominio en las solicitudes de fichas.",
+      "type": "string"
+    },
+    "dcmKeycloakGrantType": {
+      "title": "Tipo de concesión Keycloak",
+      "description": "Tipo de concesión Keycloak utilizado en las solicitudes de fichas.",
+      "type": "string",
+      "enum": [
+        "client_credentials",
+        "password"
+      ],
+      "default": "client_credentials"
+    },
+    "dcmKeycloakClientSecret": {
+      "title": "Secreto de cliente Keycloak",
+      "description": "Secreto de cliente Keycloak. Obligatorio si el tipo de concesión = credenciales_cliente.",
+      "type": "string"
+    },
+    "dcmTLSAllowAnyHostname": {
+      "title": "TLS Permitir Cualquier Nombre de Anfitrión",
+      "description": "Si el otro servidor requiere HTTPS y esta opción de configuración está establecida a true, el certificado del otro servidor es validado a través del almacén de confianza, pero la validación del nombre de anfitrión no se realiza.",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmTLSDisableTrustManager": {
+      "title": "TLS Deshabilitar Administrador de Confianza",
+      "description": "Si el otro servidor requiere HTTPS y esta opción de configuración está establecida en true, no es necesario especificar un almacén de confianza.",
+      "type": "boolean",
+      "default": false
+    },
+    "uid":  {
+      "title": "User ID",
+      "description": "User ID. Required if grant type = password.",
+      "type": "string"
+    },
+    "userPassword":  {
+      "title": "User Password",
+      "description": "User Password. Required if grant type = password.",
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "title": "Comparar Lado",
+  "description": "Comparar Lado.",
+  "type": "object",
+  "required": [
+    "dcmuiCompareSideName",
+    "dcmuiCompareSideCluster",
+    "dcmuiCompareSideElasticsearch",
+    "dcmuiCompareSideInstalled",
+    "dcmuiCompareSideOrder"
+  ],
+  "properties": {
+    "dcmuiCompareSideName": {
+      "title": "Nombre",
+      "description": "Nombre del lado de comparación.",
+      "type": "string"
+    },
+    "dcmuiCompareSideDescription": {
+      "title": "Descripción",
+      "description": "Una breve descripción sobre este Grupo.",
+      "type": "string"
+    },
+    "dcmuiCompareSideOrder": {
+      "title": "Orden",
+      "description": "Orden del lado de comparación.",
+      "type": "integer",
+      "default":0,
+      "enum":[
+         0,
+         1
+      ]
+    },
+    "dcmuiCompareSideCluster": {
+      "title": "Grupo",
+      "description": "Seleccionar un Grupo.",
+      "type": "string",
+      "format":"dcmuiDeviceClusterObject"
+    },
+    "dcmuiCompareSideElasticsearch": {
+      "title": "Elasticsearch",
+      "description": "Seleccionar una URL de Elasticsearch.",
+      "type": "string",
+      "format":"dcmuiElasticsearchConfig"
+    },
+    "dcmuiCompareSideQueueName": {
+      "title": "Cola",
+      "description": "Seleccionar el nombre de la cola que se utilizará para el lado de comparación.",
+      "type": "string",
+      "format":"dcmQueueName"
+    },
+    "dcmuiCompareSideInstalled": {
+      "title": "Instalado",
+      "description": "Si es verdadero, este lado de comparación está activo en el panel de control.",
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

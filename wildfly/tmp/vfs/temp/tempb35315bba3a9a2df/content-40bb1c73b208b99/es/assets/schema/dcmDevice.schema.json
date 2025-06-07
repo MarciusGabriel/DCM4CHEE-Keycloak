@@ -1,0 +1,168 @@
+{
+  "title": "Extensión de dispositivo",
+  "description": "dcm4che atributos de dispositivo propietarios.",
+  "type": "object",
+  "required": [
+    "dcmRoleSelectionNegotiationLenient",
+    "dcmLimitOpenAssociations"
+  ],
+  "properties": {
+    "dcmRoleSelectionNegotiationLenient": {
+      "title": "Negociación de Selección de Rol Leniente",
+      "description": "Indica que se deshabilite la comprobación de la negociación de selección de rol SCP/SCU requerida en el envío de DIMSE-RQs. Puede ser sobrescrito por el valor configurado para determinados sistemas operativos de red.",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmLimitOpenAssociations": {
+      "title": "Límite de asociación",
+      "description": "Número máximo de conexiones DICOM abiertas; rechaza las solicitudes de asociación si se supera el límite; 0 = ilimitado.",
+      "type": "integer",
+      "minimum": 0,
+      "default": 0
+    },
+    "dcmLimitAssociationsInitiatedBy": {
+      "title": "Límite de asociación para AE",
+      "description": "Número máximo de conexiones DICOM abiertas iniciadas por una entidad de aplicación (AE) concreta en formato <ae-title>=<number>; rechaza las solicitudes de asociación de esa AE si se supera el límite.",
+      "type": "array",
+      "items" : { "type": "string" },
+      "format": "dcmLimitAssociationsInitiatedBy"
+    },
+    "dcmTrustStoreURL": {
+      "title": "Confiar en la URL del almacén",
+      "description": "URL del almacén de confianza con certificados para nodos DICOM que están autorizados a conectarse a este nodo; anula dicomAuthorizedNodeCertificateReference.",
+      "type": "string"
+    },
+    "dcmTrustStoreType": {
+      "title": "Tipo de Almacén de Confianza",
+      "description": "Almacén de Claves Tipo de Almacén de Confianza especificado por dcmTrustStoreURL. Valores enumerados: JKS, PKCS12.",
+      "type":"string"
+    },
+    "dcmTrustStorePin": {
+      "title": "Trust Store Pin",
+      "description": "Contraseña de Almacén de confianza especificada por la URL de Almacén de confianza.",
+      "type": "string"
+    },
+    "dcmTrustStorePinProperty": {
+      "title": "Propiedad de PIN de almacén de confianza",
+      "description": "Propiedad del sistema del almacén de claves Contraseña del almacén de confianza especificada por la URL del almacén de confianza.",
+      "type": "string"
+    },
+    "dcmKeyStoreURL": {
+      "title": "URL de almacén de claves",
+      "description": "URL de almacén de claves con clave privada y certificado utilizado para identificar este nodo DICOM en conexiones TLS.",
+      "type": "string"
+    },
+    "dcmKeyStoreType": {
+      "title": "Tipo de almacén de claves",
+      "description": "Tipo de almacén de claves especificado por la URL del almacén de claves. Valores enumerados: JKS, PKCS12.",
+      "type": "string"
+    },
+    "dcmKeyStorePin": {
+      "title": "PIN del almacén de claves",
+      "description": "Contraseña del almacén de claves especificado por la URL del almacén de claves.",
+      "type": "string"
+    },
+    "dcmKeyStorePinProperty": {
+      "title": "Propiedad Pin de Almacén de Claves",
+      "description": "Propiedad del sistema de Almacén de Claves Contraseña de Almacén de Claves especificada por URL de Almacén de Claves.",
+      "type": "string"
+    },
+    "dcmKeyStoreKeyPin": {
+      "title": "PIN de clave de almacén de claves",
+      "description": "Contraseña de almacén de claves especificada por URL de almacén de claves.",
+      "type": "string"
+    },
+    "dcmKeyStoreKeyPinProperty": {
+      "title": "Propiedad Pin de clave de almacén de claves",
+      "description": "Propiedad del sistema de Clave Contraseña de almacén de claves especificada por URL de almacén de claves.",
+      "type": "string"
+    },
+    "dcmTimeZoneOfDevice": {
+      "title": "Zona horaria del dispositivo",
+      "description": "ID de zona horaria del dispositivo; coincide con el ID de zona horaria de Java.",
+      "type": "string"
+    },
+    "dcmWebApp": {
+      "title": "Aplicaciones web",
+      "description": "Aplicaciones web proporcionadas por el dispositivo.",
+      "type": "array",
+      "titleKey":"{dcmWebAppName}",
+      "order":26,
+      "items": {
+        "$ref": "webApplication.schema.json"
+      }
+    },
+    "dcmKeycloakClient": {
+      "title": "Clientes Keycloak",
+      "description": "Clientes Keycloak proporcionados por el dispositivo.",
+      "type": "array",
+      "titleKey":"{dcmKeycloakClientID}",
+      "order":27,
+      "items": {
+        "$ref": "keycloakClient.schema.json"
+      }
+    },
+    "hl7Application": {
+      "title": "Aplicaciones HL7",
+      "description": "Aplicaciones HL7 proporcionadas por el dispositivo.",
+      "type": "array",
+      "titleKey":"{hl7ApplicationName}",
+      "order":28,
+      "items": {
+        "$ref": "hl7Application.schema.json"
+      }
+    },
+    "dcmImageWriter": {
+      "title": "Escritores de Imagen",
+      "description": "Especifica Escritores de Imagen Java Image IO con Parámetros de Escritura usados para comprimir imágenes DICOM.",
+      "type": "array",
+      "titleKey":"{dicomTransferSyntax}",
+      "order":29,
+      "items": {
+        "$ref": "imageWriter.schema.json"
+      }
+    },
+    "dcmImageReader": {
+      "title": "Lectores de Imagen",
+      "description": "Especifica los Lectores de Imagen Java Image IO utilizados para descomprimir imágenes DICOM comprimidas.",
+      "type": "array",
+      "titleKey":"{dicomTransferSyntax}",
+      "order":30,
+      "items": {
+        "$ref": "imageReader.schema.json"
+      }
+    },
+    "dcmAuditLogger": {
+      "title": "Registrador de auditoría",
+      "description": "Información relacionada con el registrador de auditoría.",
+      "titleKey":"{cn}",
+      "type": "array",
+      "order":31,
+      "items" : {
+        "$ref": "auditLogger.schema.json"
+      }
+    },
+    "dcmAuditRecordRepository": {
+      "title": "Depósito de registros de auditoría",
+      "description": "Información relacionada con el depósito de registros de auditoría.",
+      "$ref": "auditRecordRepository.schema.json",
+      "order":32
+    },
+    "dcmArchiveDevice": {
+      "title": "Dispositivo de Archivo",
+      "description": "Información relacionada con el Dispositivo de Archivo DICOM.",
+      "order":33,
+      "$ref": "archiveDevice.schema.json"
+    },
+    "dcmuiConfig": {
+      "title": "Configuración UI",
+      "description": "Configuración UI.",
+      "titleKey":"{dcmuiConfigName}",
+      "type": "array",
+      "order":34,
+      "items" : {
+        "$ref": "uiConfig.schema.json"
+      }
+    }
+  }
+}

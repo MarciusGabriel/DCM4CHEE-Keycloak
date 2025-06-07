@@ -1,0 +1,109 @@
+{
+  "title": "Cola",
+  "description": "Cola de tareas gestionadas.",
+  "type": "object",
+  "required": [
+    "dcmQueueName",
+    "dcmMaxTasksParallel",
+    "dcmRetryDelay",
+    "dcmRetryOnWarning",
+    "dcmRetryDelayMultiplier",
+    "dcmMaxRetries",
+    "dicomInstalled"
+  ],
+  "properties": {
+    "dcmQueueName": {
+      "title": "Nombre de la cola",
+      "description": "Nombre de la cola de tareas.",
+      "type": "string",
+      "use": [
+        "$.dcmDevice.dcmuiConfig[*].dcmuiDashboardConfig[*].dcmuiQueueName[*]",
+        "$.dcmDevice.dcmuiConfig[*].dcmuiDashboardConfig[*].dcmuiCompareSideObjects[*].dcmuiCompareSideQueueName"
+      ]
+    },
+    "dicomInstalled": {
+      "title": "instalada",
+      "description": "Si es falso, se pausa el procesamiento de tareas en esta cola.",
+      "type": "boolean",
+      "default": true
+    },
+    "dcmMaxTasksParallel": {
+      "title": "Tareas paralelas máximas",
+      "description": "Número máximo de tareas procesadas en paralelo.",
+      "type": "integer",
+      "minimum": 1,
+      "default": 1
+    },
+    "dicomDescription": {
+      "title": "Descripción DICOM",
+      "description": "Descripción textual de la entidad DICOM.",
+      "type": "string"
+    },
+    "dcmMaxRetries": {
+      "title": "Número máximo de reintentos",
+      "description": "Número máximo de reintentos para procesar tareas programadas en una cola específica.",
+      "type": "integer",
+      "minimum": 0,
+      "default": 0
+    },
+    "dcmRetryDelay": {
+      "title": "Retraso de reintentos",
+      "description": "Retraso de reintentos para procesar tareas programadas en una cola específica en formato de duración ISO-8601 PnDTnHnMn.nS.",
+      "type": "string",
+      "default": "PT1M",
+      "format": "dcmDuration"
+    },
+    "dcmMaxRetryDelay": {
+      "title": "Retraso máximo de reintento",
+      "description": "Retraso máximo de reintento para procesar tareas programadas en una cola específica en formato de duración ISO-8601 PnDTnHnMn.nS. Infinito si no existe.",
+      "type": "string",
+      "format": "dcmDuration"
+    },
+    "dcmRetryDelayMultiplier": {
+      "title": "Multiplicador de Retraso de Reintento",
+      "description": "Multiplicador en % que tendrá efecto sobre dcmRetryDelay con dcmMaxRetryDelay a tener en cuenta.",
+      "type": "integer",
+      "minimum": 100,
+      "default": 100
+    },
+    "dcmRetryOnWarning": {
+      "title": "Reintentar en caso de advertencia",
+      "description": "Habilita los reintentos para procesar tareas no sólo en caso de fallo, sino también en caso de advertencia en una cola específica.",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmPurgeQueueMessageCompletedDelay": {
+      "title": "Retraso para purgar tareas completadas",
+      "description": "Retraso en formato de duración ISO-8601 PnDTnHnMn.nS tras el cual se purgan las tareas completadas. Si no existe, no hay purga para esa cola en particular.",
+      "type": "string",
+      "format": "dcmDuration"
+    },
+    "dcmPurgeQueueMessageFailedDelay": {
+      "title": "Retraso para purgar tareas fallidas",
+      "description": "Retraso en formato de duración ISO-8601 PnDTnHnMn.nS tras el cual se purgan las tareas fallidas. Si no existe, no hay eliminación para esa cola en particular.",
+      "type": "string",
+      "format": "dcmDuration"
+    },
+    "dcmPurgeQueueMessageWarningDelay": {
+      "title": "Retraso para purgar tareas de aviso",
+      "description": "Retraso en formato de duración ISO-8601 PnDTnHnMn.nS tras el cual se purgan las tareas de aviso. Si no existe, no hay eliminación para esa cola en particular.",
+      "type": "string",
+      "format": "dcmDuration"
+    },
+    "dcmPurgeQueueMessageCanceledDelay": {
+      "title": "Retraso para purgar tareas canceladas",
+      "description": "Retraso en formato de duración ISO-8601 PnDTnHnMn.nS tras el cual se purgan las tareas canceladas. Si no existe, no hay purga para esa cola en particular.",
+      "type": "string",
+      "format": "dcmDuration"
+    },
+    "dcmSchedule": {
+      "title": "Restringir programación",
+      "description": "Restringir programación a intervalos de tiempo especificados.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "format": "dcmSchedule"
+    }
+  }
+}

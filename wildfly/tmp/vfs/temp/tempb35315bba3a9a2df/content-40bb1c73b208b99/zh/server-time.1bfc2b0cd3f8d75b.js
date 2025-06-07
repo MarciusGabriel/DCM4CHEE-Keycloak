@@ -1,0 +1,1 @@
+(()=>{let l,s=0;addEventListener("message",({data:e})=>{if(e&&e.serverTime){let r=new Date(e.serverTime);clearInterval(l),e.idle||(l=setInterval(()=>{r.setMilliseconds(r.getMilliseconds()+1e3),s>600&&!e.idle?(postMessage({serverTime:r,refresh:!0}),s=0):(postMessage({serverTime:r,refresh:!1}),s++)},1e3))}})})();

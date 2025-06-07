@@ -1,0 +1,78 @@
+{
+  "title": "Regla de reenvío RESTful",
+  "description": "Regla de reenvío RESTful.",
+  "type": "object",
+  "required": [
+    "cn",
+    "dcmWebAppName",
+    "dcmTLSAllowAnyHostname",
+    "dcmTLSDisableTrustManager"
+  ],
+  "properties": {
+    "cn": {
+      "title": "Nombre",
+      "description": "Nombre arbitrario/significativo de la regla de reenvío RESTful.",
+      "type": "string"
+    },
+    "dcmWebAppName": {
+      "title": "Nombre de aplicación de la red",
+      "description": "Nombre de la aplicación de la red.",
+      "type": "string",
+      "format": "webApp"
+    },
+    "dcmURIPattern": {
+      "title": "Patrón de URL de solicitud",
+      "description": "Reenviar sólo las solicitudes que coincidan con la expresión regular indicada. Si el prefijo es !, solamente se reenviará las peticiones que no coincidan con la Expresión Regular dada.",
+      "type": "string"
+    },
+    "dcmHostnamePattern": {
+      "title": "Patrón de nombre del anfitrión",
+      "description": "Reenviar sólo las peticiones recibidas de clientes cuyo nombre de anfitrión coincida con la Expresión regular dada. Si el prefijo es !, solamente se reenviará las peticiones de clientes cuyo nombre de anfitrión no coincida con la Expresión Regular dada.",
+      "type": "string"
+    },
+    "dcmIPAddressPattern": {
+      "title": "Patrón de Dirección IP",
+      "description": "Reenviar sólo las peticiones recibidas de clientes que coincidan con la Expresión Regular dada. Si el prefijo es !, solamente se reenviará las peticiones de clientes cuya dirección IP no coincida con la Expresión Regular dada.",
+      "type": "string"
+    },
+    "dcmRSOperation": {
+      "title": "Operación RESTful",
+      "description": "Nombre de la operación RESTful que se reenviará a otra instancia de archivo.",
+      "type": "array",
+      "items" : {
+        "type": "string",
+        "enum": [
+          "CreatePatient",
+          "UpdatePatient",
+          "DeletePatient",
+          "ChangePatientID",
+          "ChangePatientID2",
+          "MergePatient",
+          "MergePatient2",
+          "UnmergePatient",
+          "SupplementIssuer",
+          "UpdateCharset",
+          "UpdateStudy",
+          "UpdateStudyRequest",
+          "UpdateSeries",
+          "UpdateSeriesRequest",
+          "DeleteStudy",
+          "RejectStudy",
+          "RejectSeries",
+          "RejectInstance",
+          "ApplyRetentionPolicy",
+          "ReimportStudy",
+          "UpdateStudyExpirationDate",
+          "UpdateSeriesExpirationDate",
+          "UpdateStudyAccessControlID",
+          "MoveStudyToPatient",
+          "LinkStudyToMWLMerge",
+          "CreateMWL",
+          "UpdateMWL",
+          "UpdateMWLStatus",
+          "DeleteMWL"
+        ]
+      }
+    }
+  }
+}

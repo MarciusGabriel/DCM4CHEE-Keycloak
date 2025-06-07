@@ -1,0 +1,24 @@
+{
+  "title": "Repositorio de Registros de Auditoría",
+  "description": "Información relacionada con el Repositorio de Registros de Auditoría",
+  "type": "object",
+  "required": [
+    "dicomNetworkConnectionReference"
+  ],
+  "properties": {
+    "dicomNetworkConnectionReference": {
+      "title": "Referencia de Conexión de Red",
+      "description": "Los Punteros JSON a los objetos de Conexión de Red de este Repositorio de Registros de Auditoría",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "format": "dicomDeviceName"
+    },
+    "dicomInstalled": {
+      "title": "instalado",
+      "description": "Verdadero si el ARR está instalado en la red. Si no está presente, la información sobre el estado instalado del ARR se hereda del dispositivo",
+      "type": "boolean"
+    }
+  }
+}

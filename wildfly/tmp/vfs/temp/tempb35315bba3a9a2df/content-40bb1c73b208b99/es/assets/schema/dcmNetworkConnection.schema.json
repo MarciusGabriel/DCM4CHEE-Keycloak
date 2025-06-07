@@ -1,0 +1,220 @@
+{
+  "title": "Extensión de Conexión de Red",
+  "description": "dcm4che atributos de Conexión de Red del propietario.",
+  "type": "object",
+  "required": [
+    "dcmProtocol",
+    "dcmTLSNeedClientAuth",
+    "dcmTLSProtocol",
+    "dcmTCPBacklog",
+    "dcmTCPCloseDelay",
+    "dcmTCPNoDelay",
+    "dcmSendPDULength",
+    "dcmReceivePDULength",
+    "dcmMaxOpsPerformed",
+    "dcmMaxOpsInvoked",
+    "dcmPackPDV",
+    "dcmRetrieveTimeoutTotal",
+    "dcmAATimeout"
+  ],
+  "properties": {
+    "dcmProtocol": {
+      "title": "Protocolo",
+      "description": "Protocolo de Conexión de Red.",
+      "type": "string",
+      "default": "DICOM",
+      "enum": [
+          "DICOM",
+          "HL7",
+          "HL7_MLLP2",
+          "SYSLOG_TLS",
+          "SYSLOG_UDP",
+          "HTTP"
+      ]
+    },
+    "dcmHTTPProxy": {
+      "title": "HTTP Proxy",
+      "description": "HTTP Proxy: [user:password@]host:port",
+      "type": "string"
+    },
+    "dcmTLSNeedClientAuth": {
+      "title": "Necesita autenticación de cliente TLS",
+      "description": "Indica si se requiere autenticación de cliente TLS.",
+      "type": "boolean",
+      "default": true
+    },
+    "dcmTLSProtocol": {
+      "title": "Protocolo TLS",
+      "description": "Protocolos TLS soportados.",
+      "default": ["TLSv1.2"],
+      "type": "array",
+      "items" : {
+        "type": "string",
+        "enum": [
+          "TLSv1.3",
+          "TLSv1.2",
+          "TLSv1.1",
+          "TLSv1",
+          "SSLv3"
+        ]
+      }
+    },
+    "dcmTLSEndpointIdentificationAlgorithm": {
+      "title": "Algoritmo de Identificación de Extremo TLS",
+      "description": "Indica los procedimientos de identificación o verificación de extremo durante el intercambio TLS.",
+      "type": "string",
+      "enum": [ "HTTPS", "LDAPS"]
+    },
+    "dcmTCPBacklog": {
+      "title": "Cola de espera TCP",
+      "description": "Longitud máxima de la cola para conexiones TCP entrantes.",
+      "type": "integer",
+      "default": 50,
+      "minimum": 1
+    },
+    "dcmTCPConnectTimeout": {
+      "title": "Tiempo de espera de conexión TCP",
+      "description": "Tiempo de espera de conexión TCP en ms; no hay tiempo de espera si no existe.",
+      "type": "integer",
+      "minimum": 100
+    },
+    "dcmTCPCloseDelay": {
+      "title": "Retraso de cierre TCP",
+      "description": "Retraso de cierre del conector TCP en ms tras el envío de la PDU A-ASSOCIATE-RJ, A-RELEASE-RP o A-ABORT.",
+      "type": "integer",
+      "default": 50,
+      "minimum": 0
+    },
+    "dcmTCPSendBufferSize": {
+      "title": "Tamaño del búfer de envío TCP",
+      "description": "Tamaño del búfer de envío TCP; utilice los valores predeterminados del sistema si no existen.",
+      "type": "integer",
+      "minimum": 1024
+    },
+    "dcmTCPReceiveBufferSize": {
+      "title": "Tamaño búfer recepción TCP",
+      "description": "Tamaño del búfer de recepción TCP; utilizar los valores por defecto del sistema si no existen.",
+      "type": "integer",
+      "minimum": 1024
+    },
+    "dcmTCPNoDelay": {
+      "title": "Sin Retraso TCP",
+      "description": "Activar/desactivar TCP_SINRETRASO (desactivar/activar algoritmo Nagle).",
+      "type": "boolean",
+      "default": true
+    },
+    "dcmBindAddress": {
+      "title": "Dirección de enlace",
+      "description": "Dirección de enlace del conector de escucha; utilice el nombre de anfitrión de la conexión si no existe.",
+      "type": "string"
+    },
+    "dcmClientBindAddress": {
+      "title": "Dirección de enlace del cliente",
+      "description": "Dirección de enlace de las conexiones salientes; utilice el nombre de anfitrión de la conexión si no existe.",
+      "type": "string"
+    },
+    "dcmBlacklistedHostname": {
+      "title": "Nombre de anfitrión en lista negra",
+      "description": "Nombres de anfitrión DNS en lista negra.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dcmSendPDULength": {
+      "title": "Enviar PDU Longitud",
+      "description": "Longitud máxima de las PDU emitidas.",
+      "type": "integer",
+      "default": 16378,
+      "minimum": 1024
+    },
+    "dcmReceivePDULength": {
+      "title": "Recibir PDU Longitud",
+      "description": "Longitud máxima de las PDU recibidas.",
+      "type": "integer",
+      "default": 16378,
+      "minimum": 1024
+    },
+    "dcmMaxOpsPerformed": {
+      "title": "Operaciones Máximas Invocadas",
+      "description": "Operaciones máximas realizadas|Número máximo de operaciones a realizar de forma asíncrona; 0 = infinito.",
+      "type": "integer",
+      "default": 1,
+      "minimum": 0
+    },
+    "dcmMaxOpsInvoked": {
+      "title": "Max Ops Invoked",
+      "description": "Maximal number of operations to invoke asynchronously; 0 = infinite.",
+      "type": "integer",
+      "default": 1,
+      "minimum": 0
+    },
+    "dcmPackPDV": {
+      "title": "Paquete PDV",
+      "description": "Activa/desactiva el empaquetado de PDV de comandos y datos en una PDU P-DATA-TF.",
+      "type": "boolean",
+      "default": true
+    },
+    "dcmAARQTimeout": {
+      "title": "Tiempo de espera AA-RQ",
+      "description": "Tiempo de espera en ms para la recepción de la PDU A-ASSOCIATE-RQ después de la conexión TCP; no hay tiempo de espera si no existe.",
+      "type": "integer",
+      "minimum": 100
+    },
+    "dcmAAACTimeout": {
+      "title": "Tiempo de espera AA-AC",
+      "description": "Tiempo de espera en ms para la recepción de PDU A-ASSOCIATE-AC tras el envío de PDU A-ASSOCIATE-RQ; no hay tiempo de espera si no existe.",
+      "type": "integer",
+      "minimum": 100
+    },
+    "dcmARRPTimeout": {
+      "title": "Tiempo de espera AR-RP",
+      "description": "Tiempo de espera en ms para recibir una PDU A-RELEASE-RP después de enviar una PDU A-RELEASE-RQ; no hay tiempo límite si no existe.",
+      "type": "integer",
+      "minimum": 100
+    },
+    "dcmSendTimeout": {
+      "title": "Enviar tiempo de espera",
+      "description": "Tiempo de espera en ms para enviar otros DIMSE RQs que no sean C-STORE RQs; no hay tiempo de espera si no existe.",
+      "type": "integer",
+      "minimum": 100
+    },
+    "dcmStoreTimeout": {
+      "title": "Almacenar tiempo de espera",
+      "description": "Tiempo de espera en ms para enviar C-STORE RQs; no hay tiempo de espera si no existe.",
+      "type": "integer",
+      "minimum": 100
+    },
+    "dcmResponseTimeout": {
+      "title": "Tiempo de espera de respuesta",
+      "description": "Tiempo de espera en ms para la recepcion de sobresaliente <br>- DIMSE RSPs other than C-MOVE / C-GET RSPs <br>- respuestas de mensajes HLT sobresalientes <br>- HTTP(S) respuestas <br>No hay tiempo de espera si no existe.",
+      "type": "integer",
+      "minimum": 100
+    },
+    "dcmRetrieveTimeout": {
+      "title": "Recuperar tiempo de espera",
+      "description": "Tiempo de espera en ms para la recepción de RSPs C-GET o C-MOVE pendientes; no hay tiempo de espera si no existe.",
+      "type": "integer",
+      "minimum": 100
+    },
+    "dcmRetrieveTimeoutTotal": {
+      "title": "Recuperar tiempo de espera total",
+      "description": "Indica si el temporizador con el tiempo de espera especificado para RSPs C-GET y C-MOVE pendientes se reiniciará al recibir RSPs pendientes (=falso) o no (=verdadero).",
+      "type": "boolean",
+      "default": false
+    },
+    "dcmIdleTimeout": {
+      "title": "Tiempo de espera inactivo",
+      "description": "Indica que se cancelen las asociaciones inactivas después del tiempo de espera especificado en ms; no hay tiempo de espera si no existe.",
+      "type": "integer",
+      "minimum": 100
+    },
+    "dcmAATimeout": {
+      "title": "Tiempo de espera de A-ABORT",
+      "description": "Tiempo de espera en ms para terminar de enviar cualquier DIMSE antes de enviar una PDU A-ABORT, activada por la aplicación o por expiración de otro tiempo de espera configurado de esta Conexión. Si expira el tiempo de espera, la conexión TCP se cerrará sin enviar el A-ABORT.",
+      "type": "integer",
+      "minimum": 0,
+      "default": 1000
+    }
+  }
+}

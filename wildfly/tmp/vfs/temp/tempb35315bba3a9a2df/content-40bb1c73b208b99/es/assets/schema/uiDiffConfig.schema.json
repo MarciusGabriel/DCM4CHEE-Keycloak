@@ -1,0 +1,66 @@
+{
+  "title": "Configuración UI Diff",
+  "description": "Configuración UI Diff",
+  "type": "object",
+  "required": [
+    "dcmuiDiffConfigName"
+  ],
+  "properties": {
+    "dcmuiDiffConfigName": {
+      "title": "Nombre de configuración de UI Diff",
+      "description": "Nombre de configuración de UI Diff",
+      "type": "string"
+    },
+    "dcmuiDiffCallingAET": {
+      "title": "Diff Llamada AET",
+      "description": "Diff Llamada AET",
+      "type": "string",
+      "format": "dcmArchiveAETitle"
+    },
+    "dcmuiDiffPrimaryCFindSCP": {
+      "title": "UI Diff Primario C-FIND SCP",
+      "description": "UI Diff Primario C-FIND SCP",
+      "type": "string",
+      "format": "dcmAETitle"
+    },
+    "dcmuiDiffPrimaryCMoveSCP": {
+      "title": "UI Diff Primario C-MOVE SCP",
+      "description": "UI Diff Primario C-MOVE SCP",
+      "type": "string",
+      "format": "dcmAETitle"
+    },
+    "dcmuiDiffPrimaryCStoreSCP": {
+      "title": "UI Diff Primaria C-STORE SCP",
+      "description": "UI Diff Primario C-STORE SCP",
+      "type": "string",
+      "format": "dcmAETitle"
+    },
+    "dcmuiDiffSecondaryCFindSCP": {
+      "title": "UI Diff Secundario C-FIND SCP",
+      "description": "UI Diff Secundario C-FIND SCP",
+      "type": "string",
+      "format": "dcmAETitle"
+    },
+    "dcmuiDiffSecondaryCMoveSCP": {
+      "title": "UI Diff Secundario C-MOVE SCP",
+      "description": "UI Diff Secundario C-MOVE SCP",
+      "type": "string",
+      "format": "dcmAETitle"
+    },
+    "dcmuiDiffSecondaryCStoreSCP": {
+      "title": "UI Diff Secundaria C-STORE SCP",
+      "description": "UI Diff Secundaria C-STORE SCP",
+      "type": "string",
+      "format": "dcmAETitle"
+    },
+    "dcmuiDiffCriteria": {
+      "title": "Criterios de UI Diff",
+      "description": "Criterios de UI Diff.",
+      "titleKey":"{dcmuiDiffCriteriaTitle}",
+      "type": "array",
+      "items" : {
+        "$ref": "uiDiffCriteria.schema.json"
+      }
+    }
+  }
+}

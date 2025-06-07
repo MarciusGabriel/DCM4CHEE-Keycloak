@@ -1,0 +1,67 @@
+{
+  "title": "Conjunto de Atributos",
+  "description": "Conjunto de Atributos Nominal para el Parámetro de Consulta 'includefields' de los Metadatos QIDO-RS y WADO-RS o por el Parámetro de Consulta 'comparefield' de las peticiones DIFF-RS.",
+  "type": "object",
+  "required": [
+    "dcmAttributeSetType",
+    "dcmAttributeSetID",
+    "dcmTag",
+    "dicomInstalled"
+  ],
+  "properties": {
+    "dicomDescription": {
+      "title": "Descripción del conjunto de atributos",
+      "description": "Descripción en texto sin restricciones de este conjunto de atributos",
+      "type": "string"
+    },
+    "dcmAttributeSetType": {
+      "title": "Tipo de conjunto de atributos",
+      "description": "Especifica si este conjunto de atributos es utilizado por el parámetro de consulta \"includefields\" de los metadatos QIDO-RS y WADO-RS o por el parámetro de consulta \"comparefield\" de las solicitudes DIFF-RS.",
+      "type": "string",
+      "enum": [
+        "QIDO_RS",
+        "WADO_RS",
+        "DIFF_RS",
+        "LEADING_CFIND_SCP"
+      ]
+    },
+    "dcmAttributeSetID": {
+      "title": "ID del conjunto de atributos",
+      "description": "ID utilizado por el parámetro de consulta \"includefields\" de las solicitudes de metadatos QIDO-RS y WADO-RS y por el parámetro de consulta \"comparefield\" de las solicitudes DIFF-RS para hacer referencia a este conjunto de atributos.",
+      "type": "string"
+    },
+    "dcmAttributeSetTitle": {
+      "title": "Título del conjunto de atributos",
+      "description": "Título de este conjunto de atributos.",
+      "type": "string"
+    },
+    "dcmAttributeSetNumber": {
+      "title": "Número del conjunto de atributos",
+      "description": "Número utilizado para ordenar los conjuntos de atributos.",
+      "type": "integer"
+    },
+    "dicomInstalled": {
+      "title": "instalados",
+      "description": "Booleano para indicar si este conjunto de atributos está instalado actualmente en el dispositivo de archivo",
+      "type": "boolean",
+      "default": true
+    },
+    "dcmTag": {
+      "title": "Atributo Etiqueta",
+      "description": "Etiqueta DICOM como cadena hexadecimal",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "format": "dcmTag"
+    },
+    "dcmProperty": {
+      "title": "Propiedad",
+      "description": "Propiedad en formato <name>=<value>",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

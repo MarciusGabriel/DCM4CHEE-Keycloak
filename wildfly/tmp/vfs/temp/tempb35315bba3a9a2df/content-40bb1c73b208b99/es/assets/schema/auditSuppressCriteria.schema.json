@@ -1,0 +1,244 @@
+{
+  "title": "Criterios de supresión de auditoría",
+  "description": "Criterios de supresión de auditoría.",
+  "type": "object",
+  "required": [
+    "cn"
+  ],
+  "properties": {
+    "cn": {
+      "title": "Nombre",
+      "description": "Nombre arbitrario/significativo del criterio de supresión de auditoría.",
+      "type": "string"
+    },
+    "dcmAuditEventID": {
+      "title": "Identificación del evento de auditoría",
+      "description": "DICOM PS 3.15 A.5 Código de identificación del evento de auditoría y nombre del sistema de códigos en formato (CV, CSD, \"CM\").",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "(110100, DCM, \"Application Activity\")",
+          "(110101, DCM, \"Audit Log Used\")",
+          "(110102, DCM, \"Begin Transferring DICOM Instances\")",
+          "(110103, DCM, \"DICOM Instances Accessed\")",
+          "(110104, DCM, \"DICOM Instances Transferred\")",
+          "(110105, DCM, \"DICOM Study Deleted\")",
+          "(110106, DCM, \"Export\")",
+          "(110107, DCM, \"Import\")",
+          "(110108, DCM, \"Network Entry\")",
+          "(110109, DCM, \"Order Record\")",
+          "(110110, DCM, \"Patient Record\")",
+          "(110111, DCM, \"Procedure Record\")",
+          "(110112, DCM, \"Query\")",
+          "(110113, DCM, \"Security Alert\")",
+          "(110114, DCM, \"User Authentication\")",
+          "(IHE0001, IHE, \"Health Services Provision Event\")",
+          "(IHE0002, IHE, \"Medication Event\")",
+          "(IHE0003, IHE, \"Patient Care Resource Assignment\")",
+          "(IHE0004, IHE, \"Patient Care Episode\")",
+          "(IHE0005, IHE, \"Patient Care Protocol\")"
+        ]
+      }
+    },
+    "dcmAuditEventTypeCode": {
+      "title": "Código de tipo de evento de auditoría",
+      "description": "DICOM PS 3.15 A.5 Código de tipo de evento de auditoría en formato (CV, CSD, \"CM\").",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "(110120, DCM, \"Application Start\")",
+          "(110121, DCM, \"Application Stop\")",
+          "(110122, DCM, \"Login\")",
+          "(110123, DCM, \"Logout\")",
+          "(110124, DCM, \"Attach\")",
+          "(110125, DCM, \"Detach\")",
+          "(110126, DCM, \"Node Authentication\")",
+          "(110127, DCM, \"Emergency Override Started\")",
+          "(110128, DCM, \"Network Configuration\")",
+          "(110129, DCM, \"Security Configuration\")",
+          "(110130, DCM, \"Hardware Configuration\")",
+          "(110131, DCM, \"Software Configuration\")",
+          "(110132, DCM, \"Use of Restricted Function\")",
+          "(110133, DCM, \"Audit Recording Stopped\")",
+          "(110134, DCM, \"Audit Recording Started\")",
+          "(110135, DCM, \"Object Security Attributes Changed\")",
+          "(110136, DCM, \"Security Roles Changed\")",
+          "(110137, DCM, \"User security Attributes Changed\")",
+          "(110138, DCM, \"Emergency Override Stopped\")",
+          "(110139, DCM, \"Remote Service Operation Started\")",
+          "(110140, DCM, \"Remote Service Operation Stopped\")",
+          "(110141, DCM, \"Local Service Operation Started\")",
+          "(110142, DCM, \"Local Service Operation Stopped\")",
+          "(ITI-8, IHE Transactions, \"Patient Identity Feed\")",
+          "(ITI-9, IHE Transactions, \"PIX Query\")",
+          "(ITI-10, IHE Transactions, \"PIX Update Notification\")",
+          "(ITI-18, IHE Transactions, \"Registry Stored Query\")",
+          "(ITI-21, IHE Transactions, \"Patient Demographics Query\")",
+          "(ITI-22, IHE Transactions, \"Patient Demographics and Visit Query\")",
+          "(ITI-38, IHE Transactions, \"Cross Gateway Query\")",
+          "(ITI-39, IHE Transactions, \"Cross Gateway Retrieve\")",
+          "(ITI-41, IHE Transactions, \"Provide and Register Document Set-b\")",
+          "(ITI-42, IHE Transactions, \"Register Document Set-b\")",
+          "(ITI-43, IHE Transactions, \"Retrieve Document Set\")",
+          "(ITI-44, IHE Transactions, \"Patient Identity Feed\")",
+          "(ITI-45, IHE Transactions, \"PIX Query\")",
+          "(ITI-46, IHE Transactions, \"PIX Update Notification\")",
+          "(ITI-47, IHE Transactions, \"Patient Demographics Query\")",
+          "(ITI-51, IHE Transactions, \"Multi-Patient Query\")",
+          "(ITI-63, IHE Transactions, \"XCF Fetch\")"
+        ]
+      }
+    },
+    "dcmAuditEventActionCode": {
+      "title": "Código de acción del evento",
+      "description": "DICOM PS 3.15 A.5 Código del tipo de acción del evento de auditoría.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "C",
+          "R",
+          "U",
+          "D",
+          "E"
+        ]
+      }
+    },
+    "dcmAuditEventOutcomeIndicator": {
+      "title": "Indicador de resultado del evento",
+      "description": "DICOM PS 3.15 A.5 Indicador de resultado del evento de auditoría.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "0",
+          "4",
+          "8",
+          "12"
+        ]
+      }
+    },
+    "dcmAuditUserID": {
+      "title": "Identificación de usuario",
+      "description": "ID de usuario del participante activo de la auditoría PS 3.15 A.5.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dcmAuditAlternativeUserID": {
+      "title": "Identificación de usuario alternativa",
+      "description": "DICOM PS 3.15 A.5 Identificación de usuario alternativo del participante activo en la auditoría.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dcmAuditUserRoleIDCode": {
+      "title": "Código de identificación de la función del usuario",
+      "description": "DICOM PS 3.15 A.5 Código de identificación de la función del usuario del participante activo en formato de auditoría (CV, CSD, \"CM\").",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "(110150, DCM, \"Application\")",
+          "(110151, DCM, \"Application Launcher\")",
+          "(110152, DCM, \"Destination Role ID\")",
+          "(110153, DCM, \"Source Role ID\")",
+          "(110154, DCM, \"Destination Media\")",
+          "(110155, DCM, \"Source Media\")"
+        ]
+      }
+    },
+    "dcmAuditNetworkAccessPointID": {
+      "title": "Identificación del punto de acceso a la red",
+      "description": "DICOM PS 3.15 A.5 Identificación del punto de acceso a la red del participante activo en la auditoría.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dcmAuditUserIsRequestor": {
+      "title": "El usuario es el solicitante",
+      "description": "Indica si el participante activo es el iniciador/solicitante del evento de auditoría, tal como se especifica en DICOM PS 3.15 A.5.",
+      "type": "boolean"
+    },
+    "dcmParticipantObjectTypeCode": {
+      "title": "Código de tipo de objeto de participante",
+      "description": "DICOM PS 3.15 A.5 Código de tipo de objeto de participante.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    },
+    "dcmParticipantObjectTypeCodeRole": {
+      "title": "Código de tipo de objeto de participante Función",
+      "description": "DICOM PS 3.15 A.5 Código de tipo de objeto de participante Función.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26"
+        ]
+      }
+    },
+    "dcmParticipantObjectDataLifeCycle": {
+      "title": "Ciclo de vida de los datos del objeto participante",
+      "description": "DICOM PS 3.15 A.5 Ciclo de vida de los datos del objeto participante.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15"
+        ]
+      }
+    }
+  }
+}

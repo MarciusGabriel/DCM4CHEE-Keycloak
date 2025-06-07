@@ -1,0 +1,111 @@
+{
+  "title": "Aplicación Web",
+  "description": "Información sobre la aplicación Web.",
+  "type": "object",
+  "required": [
+    "dcmWebAppName",
+    "dcmWebServicePath",
+    "dcmWebServiceClass"
+  ],
+  "properties": {
+    "dcmWebAppName": {
+      "title": "Nombre de la Aplicación Web",
+      "description": "Nombre de la Aplicación Web.",
+      "type": "string",
+      "use": [
+        "$.dicomNetworkAE[*].dcmNetworkAE.dcmArchiveNetworkAE.dcmFallbackWadoURIWebAppName",
+        "$.dicomNetworkAE[*].dcmNetworkAE.dcmArchiveNetworkAE.dcmExternalWadoRSWebAppName",
+        "$.dcmDevice.dcmArchiveDevice.dcmFallbackWadoURIWebAppName",
+        "$.dcmDevice.dcmArchiveDevice.dcmExternalWadoRSWebAppName"
+      ]
+    },
+    "dicomNetworkConnectionReference": {
+      "title": "Conexión de red de la aplicación web",
+      "description": "Conexión o conexiones de red en las que están disponibles los servicios de la aplicación web.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dicomDescription": {
+      "title": "Descripción de la aplicación web",
+      "description": "Descripción de texto sin restricciones de la aplicación web.",
+      "type": "string"
+    },
+    "dcmWebServicePath": {
+      "title": "Ruta del Servicio Web",
+      "description": "Ruta HTTP de los servicios de la aplicación Web.",
+      "type": "string"
+    },
+    "dcmWebServiceClass": {
+      "title": "Clase de Servicio Web",
+      "description": "Clases de Servicio Web proporcionadas por la aplicación Web.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "QIDO_RS",
+          "AI_CHAT",
+          "DOCUMENTATION",
+          "STOW_RS",
+          "WADO_RS",
+          "WADO_URI",
+          "UPS_RS",
+          "MWL_RS",
+          "MPPS_RS",
+          "QIDO_COUNT",
+          "DCM4CHEE_ARC",
+          "DCM4CHEE_ARC_AET",
+          "DCM4CHEE_ARC_AET_DIFF",
+          "PAM",
+          "REJECT",
+          "MOVE",
+          "MOVE_MATCHING",
+          "UPS_MATCHING",
+          "ELASTICSEARCH",
+          "PROMETHEUS",
+          "GRAFANA",
+          "XDS_RS",
+          "AGFA_BLOB",
+          "J4C_ROUTER",
+          "FHIR",
+          "WORKFLOW_MANAGER"
+        ]
+      }
+    },
+    "dcmKeycloakClientID": {
+      "title": "Identificación de cliente Keycloak",
+      "description": "Identificación de cliente Keycloak para la aplicación Web.",
+      "type": "string",
+      "format": "dcmKeycloakClient"
+    },
+    "dicomAETitle": {
+      "title": "Título AE",
+      "description": "Título AE de Red asociado a esta Aplicación Web.",
+      "type": "string",
+      "format": "dcmArchiveAETitle"
+    },
+    "dicomApplicationCluster": {
+      "title": "Grupo de aplicaciones",
+      "description": "Nombres definidos localmente para un subconjunto de aplicaciones relacionadas.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dcmProperty": {
+      "title": "Propiedad de aplicación Web",
+      "description": "Propiedad de aplicación Web en formato {name}={value}. Refer <a href=\"https://github.com/dcm4che/dcm4chee-arc-light/wiki/Web-Application-Properties\" target=\"_blank\">Web Application Properties</a> ejemplos de configuración basados en casos de uso.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "format": "dcmProperty"
+    },
+    "dicomInstalled": {
+      "title": "instalado",
+      "description": "Verdadero si la aplicación web está instalada en la red. Si no está presente, la información sobre el estado instalado de la Aplicación Web se hereda del dispositivo.",
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "title": "Lista desplegable Aet",
+  "description": "Lista desplegable Aet.",
+  "type": "object",
+  "required": [
+    "dcmuiAetListName",
+    "dcmuiAets",
+    "dcmAcceptedUserRole",
+    "dcmuiMode"
+  ],
+  "properties": {
+    "dcmuiAetListName": {
+      "title": "Nombre de la lista",
+      "description": "Defina un nombre para esta configuración.",
+      "type": "string"
+    },
+    "dcmuiAetListDescription": {
+      "title": "Descripción",
+      "description": "Descripción de la lista de AET.",
+      "type": "string"
+    },
+    "dcmuiMode": {
+      "title": "Modo de la lista de AETs",
+      "description": "Define en qué modo debe estar disponible esta configuración en la lista desplegable de AETs 'internos' ( AETs propios del archivo, en algunos lugares también llamados 'AET de casa' o 'AET local' ) o 'externos' ( o en algunos lugares también llamados 'AET remotos' ), para estar disponible para ambos no selecciones ninguno de ellos.",
+      "type": "string",
+      "enum": [
+        "internal",
+        "external"
+      ]
+    },
+    "dcmuiAets": {
+      "title": "AETs",
+      "description": "Parámetro de acción UI.",
+      "format": "dcmAETitle",
+      "type": "array",
+      "items" : {
+        "type": "string"
+      }
+    },
+    "dcmAcceptedUserRole": {
+      "title": "Rol de Usuario Aceptado",
+      "description": "Define los roles para los cuales esta configuración debe estar disponible, usa 'user' para estar disponible para todos los roles.",
+      "type": "array",
+      "items" : {
+        "type": "string"
+      }
+    }
+  }
+}

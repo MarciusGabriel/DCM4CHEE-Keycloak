@@ -1,0 +1,29 @@
+{
+  "title": "Generador ID",
+  "description": "Generador ID",
+  "type": "object",
+  "required": [
+    "dcmIDGeneratorName",
+    "dcmIDGeneratorFormat",
+    "dcmIDGeneratorInitialValue"
+  ],
+  "properties": {
+    "dcmIDGeneratorName": {
+      "title": "Nombre del generador de ID",
+      "description": "Nombre del generador de ID.",
+      "type": "string"
+    },
+    "dcmIDGeneratorFormat": {
+      "title": "Formato del generador de ID",
+      "description": "Cadena de formato utilizada por este generador de ID. %0<width>d será reemplazado por un número secuencial con ceros a la izquierda de acuerdo al ancho dado.",
+      "type": "string"
+    },
+    "dcmIDGeneratorInitialValue": {
+      "title": "Valor inicial del generador de ID",
+      "description": "Valor inicial de la secuencia utilizada por este generador de ID.",
+      "type": "integer",
+      "minimum": 0,
+      "default": 1
+    }
+  }
+}
