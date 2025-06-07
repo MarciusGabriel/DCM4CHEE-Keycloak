@@ -15,7 +15,7 @@ Documentação completa para configurar o DCM4CHEE integrado ao Keycloak, com in
 ------------------------------
 
 
-Antes de rodar o `docker-compose.yml`, crie uma pasta para o projeto e dentro dela o arquivo `docker-compose.yml` e as pastas de volumes:
+Antes de rodar o `docker-compose.yml`, crie uma pasta para o projeto e coloque dentro dela o arquivo `docker-compose.yml` e as pastas de volumes:
 
 
 
